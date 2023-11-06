@@ -13,7 +13,7 @@ const registroUsuarios = async (req, res) => {
     // Primero, verifica si el usuario ya existe en la base de datos
     const existingUser = await collection.findOne({ email: email });
     if (existingUser) {
-      return res.status(400).json({ message: "El usuario ya existe" });
+      return res.status(400).json(["El usuario ya existe"] );
     }
 
     // Genera un uuid para el usuario
