@@ -7,7 +7,7 @@ const validateToken = (req, res, next) => {
   if (!authHeader)
     return res.status(401).json({ message: "No token, authorization denied" });
 
-  const token = authHeader.split(" ")[1]; // Divide el encabezado en dos partes: "Bearer" y "<token>", y toma la segunda parte
+  const token = authHeader.split(" ")[1]; //? Divide el encabezado en dos partes: "Bearer" y "<token>", y toma la segunda parte
 
   jwt.verify(token, TOKEN_SECRET, (err, user) => {
     if (err) {
@@ -16,11 +16,11 @@ const validateToken = (req, res, next) => {
       } else {
         return res.status(401).json({ message: "Invalid token" });
       }
+    } else {
+      req.user = user;
+      next();
     }
-    req.user = user;
   });
-
-  next();
 };
 
 module.exports = { validateToken };
