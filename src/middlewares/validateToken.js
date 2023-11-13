@@ -1,19 +1,26 @@
-const jwt = require('jsonwebtoken')
-const {TOKEN_SECRET} = require('../config.js')
+const jwt = require("jsonwebtoken");
+const { TOKEN_SECRET } = require("../config.js");
 
+const validateToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-const validateToken = (req,res,next) =>{
-    const {token} = req.cookies
+  if (!authHeader)
+    return res.status(401).json({ message: "No token, authorization denied" });
 
-    if(!token) return res.status(401).json({message: 'No token, autorization denied'})
+  const token = authHeader.split(" ")[1]; // Divide el encabezado en dos partes: "Bearer" y "<token>", y toma la segunda parte
 
-    jwt.verify(token, TOKEN_SECRET, (err, user) => {
-        if(err) return res.status(401).json({message: 'Invalid token'})
+  jwt.verify(token, TOKEN_SECRET, (err, user) => {
+    if (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ message: "Token expired" });
+      } else {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+    }
+    req.user = user;
+  });
 
-        req.user = user;
-    })
+  next();
+};
 
-    next()
-}
-
-module.exports = {validateToken}
+module.exports = { validateToken };

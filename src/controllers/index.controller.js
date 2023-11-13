@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const { createAcessToken } = require("../libs/jwt.js");
 const { client, dbName } = require("../database.js");
+const {iniciarSesionExitosa} = require('../middlewares/sessionsMap.js')
 
 //*Registro usuarios
 const registroUsuarios = async (req, res) => {
@@ -13,7 +14,7 @@ const registroUsuarios = async (req, res) => {
     // Primero, verifica si el usuario ya existe en la base de datos
     const existingUser = await collection.findOne({ email: email });
     if (existingUser) {
-      return res.status(400).json(["El usuario ya existe"] );
+      return res.status(400).json(["El usuario ya existe"]);
     }
 
     // Genera un uuid para el usuario
@@ -36,7 +37,7 @@ const registroUsuarios = async (req, res) => {
     await collection.insertOne(user);
 
     // Si se agrega correctamente, puedes responder con un mensaje de éxito
-    res.status(201).json({ message: "Usuario registrado con éxito" });
+    res.status(201).json(["Usuario registrado con éxito"]);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -51,19 +52,21 @@ const loginUsuario = async (req, res) => {
   const collection = db.collection("users");
   try {
     const userFound = await collection.findOne({ email: email });
-    if (!userFound) return res.status(400).json({ message: "User not found" });
+    if (!userFound) return res.status(400).json(["User not found"] );
 
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch)
-      return res.status(400).json({ message: "Incorrect password" });
+      return res.status(400).json(["Incorrect password"] );
 
     const token = await createAcessToken({ id: userFound._id });
+    
+    iniciarSesionExitosa(userFound._id, token);
 
-    res.cookie("token", token);
 
     res.json({
       id: userFound._id,
       email: userFound.email,
+      token
     });
   } catch (error) {
     console.log(error);
@@ -71,10 +74,10 @@ const loginUsuario = async (req, res) => {
   }
 };
 
+const profile = (req, res) => {
 
+  
+  res.json({ message: "Hola jajaja" });
+};
 
-const profile = (req,res) => {
-  res.json({message: 'Hola jajaja'})
-}
-
-module.exports = { registroUsuarios, loginUsuario, profile};
+module.exports = { registroUsuarios, loginUsuario, profile };
