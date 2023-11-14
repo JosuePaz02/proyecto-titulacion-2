@@ -1,90 +1,80 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #1a1a1a; 
-  }
-  
-  .center-content {
-    text-align: center;
-    margin: 50px;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+}
+
+.center-content {
+  text-align: center;
+  margin: 50px;
+  color: #fff;
 }
 
 .center-content a {
-    color: #fff;
-    margin-right: 20px; /* Añadido un margen derecho solo para el enlace "Registrarse" */
-    float: right;
+  color: #fff;
+  margin-right: 20px; /* Añadido un margen derecho solo para el enlace "Registrarse" */
+  float: right;
 }
 
 .separator {
-    margin: 0; 
+  margin: 0;
 }
 
-
-  
-  .buton {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color:  #8e44ad;;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 15px;
-    transition: background-color 0.3s ease-in-out;
-    font-size: 16px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px; 
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8e44ad;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 15px;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
-.buton:hover {
-    background-color:#6c3483;
-}
-  
-  .separator {
-    margin: 0 10px;
-  }
-  
-  .images-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .left-image,
-  .right-image {
-    width: 200px;
-  }
-  
-  .right-image {
-    margin-left: auto;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 25px; /* Añadido para hacer los cuadros de texto redondos */
-    border: 2px solid #8e44ad; /* Añadido un borde morado */
-  }
-  
-  .login-header {
-    font-size: 36px; /* Tamaño del texto más grande */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Estilo de letra bonito, puedes ajustar la lista según tus preferencias */
-    color: #fff;
-    margin-bottom: 20px;
-    text-align: center;
+button:hover {
+  background-color: #6c3483;
 }
 
+.separator {
+  margin: 0 10px;
+}
 
+.images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.left-image,
+.right-image {
+  width: 200px;
+}
 
+.right-image {
+  margin-left: auto;
+}
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 25px; /* Añadido para hacer los cuadros de texto redondos */
+  border: 2px solid #8e44ad; /* Añadido un borde morado */
+}
 
-  
-  
+.login-header {
+  font-size: 36px; /* Tamaño del texto más grande */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Estilo de letra bonito, puedes ajustar la lista según tus preferencias */
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}

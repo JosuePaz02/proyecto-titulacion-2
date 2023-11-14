@@ -6,6 +6,7 @@
     <title>Login</title>
   </head>
   <body>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
       function onSubmit(token) {
         document.getElementById("user-form").submit();
@@ -32,7 +33,12 @@
           placeholder="Escribe tu contraseña"
           required="true"
         />
-        <button class="buton" data-callback="onSubmit" data-action="submit">
+        <button
+          class="g-recaptcha"
+          data-sitekey="6Ld255QoAAAAANypXIKZ7fSemDrYq5UjUizfxLBr"
+          data-callback="onSubmit"
+          data-action="submit"
+        >
           Ingresar
         </button>
       </form>
