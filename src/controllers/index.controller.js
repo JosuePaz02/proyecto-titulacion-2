@@ -46,6 +46,11 @@ const registroUsuarios = async (req, res) => {
 
 //*Login de usuarios
 
+const loginGet = (req,res) => {
+  res.render('login.ejs')
+}
+
+
 const loginUsuario = async (req, res) => {
   const { email, password } = req.body;
   const db = client.db(dbName);
@@ -80,4 +85,4 @@ const profile = (req, res) => {
   res.json({ message: "Hola jajaja" });
 };
 
-module.exports = { registroUsuarios, loginUsuario, profile };
+module.exports = { registroUsuarios, loginUsuario, profile, loginGet };
