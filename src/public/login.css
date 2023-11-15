@@ -82,7 +82,21 @@ input {
 .tel-input-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px; 
 }
+
+.custom-select {
+  width: 10%; 
+}
+
+/* Agregamos un poco de margen izquierdo al input de teléfono para separarlo */
+input[name="tel_number"] {
+  width: 46%; /* Ajustamos el ancho del input de teléfono */
+  margin-left: 4%; /* Agregamos un margen izquierdo para separar del select */
+}
+
+
 
 .custom-select {
   width: 50%;
