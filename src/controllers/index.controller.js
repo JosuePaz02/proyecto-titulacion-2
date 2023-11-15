@@ -5,6 +5,10 @@ const { client, dbName } = require("../database.js");
 const {iniciarSesionExitosa} = require('../middlewares/sessionsMap.js')
 
 //*Registro usuarios
+const registroGet = (req,res) => {
+  res.render('registro.ejs')
+}
+
 const registroUsuarios = async (req, res) => {
   const { first_name, last_name, tel_area, tel_number, email, password } =
     req.body;
@@ -79,10 +83,8 @@ const loginUsuario = async (req, res) => {
   }
 };
 
-const profile = (req, res) => {
-
-  
-  res.json({ message: "Hola jajaja" });
+const linksGet = (req, res) => {
+  res.render('links.ejs')
 };
 
-module.exports = { registroUsuarios, loginUsuario, profile, loginGet };
+module.exports = { registroUsuarios, loginUsuario, linksGet, loginGet, registroGet };

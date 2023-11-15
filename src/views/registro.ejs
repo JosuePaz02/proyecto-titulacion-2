@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/login.css" />
+    <title>Registro</title>
+</head>
+<body>
+    <div class="center-container">
+        <h1 class="login-header">Sigin up</h1>
+        <form action="/registro" method="POST" id="user-form" class="center-content">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Escribe tu email"
+            required="true"
+          />
+          <br />
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            placeholder="Escribe tu nombre"
+            required="true"
+          />
+          <br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Escribe tu contraseña"
+            required="true"
+          />
+          <br />
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            placeholder="Escribe tu apellido"
+            required="true"
+          />
+          <br />
+          <div class="tel-input-container">
+            <select id="tel_area" name="tel_area" class="custom-select" required >
+            <option value="+1">Estados Unidos (+1)</option>
+            <option value="+52">México (+52)</option>
+            <option value="+44">Reino Unido (+44)</option>
+            <!-- Agrega más opciones según sea necesario -->
+            </select>
+
+            <input
+            type="text"
+            id="tel_number"
+            name="tel_number"
+            placeholder="Escribe tu numero de telefeno"
+            required="true"
+            />
+           </div>
+           
+          
+          <button
+            data-callback="onSubmit"
+            data-action="submit"
+          >
+            Ingresar
+          </button>
+        </form>
+</body>
+</html>

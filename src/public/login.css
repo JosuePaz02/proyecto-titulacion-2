@@ -78,3 +78,21 @@ input {
   margin-bottom: 20px;
   text-align: center;
 }
+
+.tel-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-select {
+  width: 50%;
+  padding: 10px;
+  margin: 8px 0 8px 0; /* Agrega un margen a la derecha */
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 2px solid #8e44ad;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
