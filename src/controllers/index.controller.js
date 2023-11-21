@@ -75,10 +75,11 @@ const loginUsuario = async (req, res) => {
       email: userFound.email,
       token,
     });
+    res.redirect("menu.ejs");
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
-    res.redirect("menu.ejs");
   }
 };
 
