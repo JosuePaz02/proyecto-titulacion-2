@@ -14,7 +14,5 @@ router.post('/registro', validateRegex, registroUsuarios)
 router.get('/login', loginGet)
 router.post('/login', loginUsuario)
 
-//*Links
-router.get('/generarLink', validateToken, linksGet)
 
 module.exports = router

@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const { createAcessToken } = require("../libs/jwt.js");
 const { client, dbName } = require("../database.js");
+const session = require('express-session')
 const { iniciarSesionExitosa } = require("../middlewares/sessionsMap.js");
 
 //*Registro usuarios
@@ -66,17 +67,26 @@ const loginUsuario = async (req, res) => {
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
+    req.session.email = userFound.email
+
     const token = await createAcessToken({ id: userFound._id });
+    console.log(token)
 
-    iniciarSesionExitosa(userFound._id, token);
+    const filtro = {_id: userFound._id}
 
-    res.json({
+    const tokenMongo = { $set: { jwt: token } };
+
+    //iniciarSesionExitosa(userFound._id, token);
+    //res.header("authorization", token);
+    
+    const result = await collection.updateOne(filtro, tokenMongo)
+
+    /* res.json({
       id: userFound._id,
       email: userFound.email,
       token,
-    });
-    res.redirect("menu.ejs");
-
+    }); */
+    res.redirect("/api/menu");
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -84,6 +94,8 @@ const loginUsuario = async (req, res) => {
 };
 
 const linksGet = (req, res) => {
+  const emailUser = req.session.email
+  console.log(emailUser)
   res.render("links.ejs");
 };
 
