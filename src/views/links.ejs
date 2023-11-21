@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,4 +8,149 @@
 <body>
     <h1>Hola jajaja</h1>
 </body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/estilos2.css" />
+    <title>Generador</title>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const montoInput = document.getElementById("monto");
+        const mesesRadio = document.getElementsByName("meses");
+
+        montoInput.addEventListener("input", function () {
+          const monto = parseInt(montoInput.value, 10);
+
+          // Habilitar opciones de meses según la condición del monto
+          if (monto > 0 && monto < 300) {
+            habilitarOpciones([0]); // Agregamos el índice 3 para el pago único
+          } else if (monto >= 300 && monto < 600) {
+            habilitarOpciones([0, 1]); // Agregamos el índice 3 para el pago único
+          } else if (monto >= 600 && monto < 1200) {
+            habilitarOpciones([0, 1, 2]); // Agregamos el índice 3 para el pago único
+          } else if (monto >= 1200) {
+            habilitarOpciones([0, 1, 2, 3]); // Agregamos el índice 3 para el pago único
+          } else {
+            deshabilitarOpciones();
+          }
+        });
+
+        function habilitarOpciones(opciones) {
+          // Habilitar las opciones indicadas en el array
+          for (let i = 0; i < mesesRadio.length; i++) {
+            mesesRadio[i].disabled = !opciones.includes(i);
+            mesesRadio[i].checked = false;
+          }
+        }
+
+        function deshabilitarOpciones() {
+          // Deshabilitar todas las opciones
+          for (let i = 0; i < mesesRadio.length; i++) {
+            mesesRadio[i].disabled = true;
+            mesesRadio[i].checked = false;
+          }
+        }
+
+        // Event listener para desmarcar radio buttons cuando se hace clic en su label
+        const labels = document.querySelectorAll(".input-container label");
+        labels.forEach((label) => {
+          label.addEventListener("click", function () {
+            const radio = this.previousElementSibling;
+            radio.checked = !radio.checked;
+          });
+        });
+      });
+    </script>
+
+    <div class="form-container">
+      <h1 class="form-title">Generador de Link</h1>
+      <form action="/generar_link" method="POST" required="true">
+        <li>
+          <div class="input-container">
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre del cliente"
+              required
+            />
+            <button type="button" id="miBoton" disabled>Botón</button>
+          </div>
+        </li>
+        <li>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email del cliente"
+            required
+          />
+        </li>
+        <li>
+          <div class="input-container">
+            <input
+              type="text"
+              id="telefono"
+              name="telefono"
+              placeholder="Teléfono del cliente"
+              required
+            />
+          </div>
+        </li>
+        <li>
+          <input
+            type="text"
+            id="monto"
+            name="monto"
+            placeholder="Monto"
+            required
+          />
+        </li>
+        <li>
+          <input type="radio" id="mes" name="meses" value="1" disabled />
+          <label for="mes3">Pago único</label>
+        </li>
+        <li>
+          <input type="radio" id="mes" name="meses" value="3" disabled />
+          <label for="mes0">3 meses</label>
+        </li>
+        <li>
+          <input type="radio" id="mes" name="meses" value="6" disabled />
+          <label for="mes1"> 6 meses</label>
+        </li>
+        <li>
+          <input type="radio" id="mes" name="meses" value="12" disabled />
+          <label for="mes2">12 meses</label>
+        </li>
+
+        <br />
+
+        <textarea
+          id="descripcion"
+          name="descripcionTextArea"
+          rows="2"
+          cols="30"
+          placeholder="Descripcion"
+          required
+        ></textarea>
+        <br />
+        
+        <div class="input-container">
+          <button>Generador</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+      </form>
+    </div>
+  </body>
 </html>
