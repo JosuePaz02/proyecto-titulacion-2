@@ -42,3 +42,5 @@ const cerrarSesionConMovimientosYHorarios = (idSesion) => {
     sessionsMap.set(idSesion, datosSesion);
   }
 }
+
+module.exports = {agregarSesionConMovimientosYHorarios, obtenerDatosDeSesionConMovimientosYHorarios, agregarMovimientoASesion, actualizarDatosDeSesionConMovimientosYHorarios, cerrarSesionConMovimientosYHorarios}

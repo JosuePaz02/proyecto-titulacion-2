@@ -68,6 +68,7 @@ const loginUsuario = async (req, res) => {
     if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
     req.session.email = userFound.email
+    req.session.id = userFound._id
 
     const token = await createAcessToken({ id: userFound._id });
     console.log(token)
@@ -80,6 +81,9 @@ const loginUsuario = async (req, res) => {
     //res.header("authorization", token);
     
     const result = await collection.updateOne(filtro, tokenMongo)
+    const daatosSession = {email: userFound.email}
+
+    agregarSesionConMovimientosYHorarios(userFound._id, daatosSession)
 
     /* res.json({
       id: userFound._id,
@@ -95,6 +99,17 @@ const loginUsuario = async (req, res) => {
 
 const linksGet = (req, res) => {
   const emailUser = req.session.email
+  const idUser = req.session.id
+
+  setInterval(() => {
+    const datosSesionUsuario = obtenerDatosDeSesionConMovimientosYHorarios(idUser);
+  
+    if (datosSesionUsuario) {
+      console.log(`Datos de sesión actualizados: ${JSON.stringify(datosSesionUsuario)}`);
+    } else {
+      console.log('Usuario no autenticado');
+    }
+  }, 10000);
   console.log(emailUser)
   res.render("links.ejs");
 };
