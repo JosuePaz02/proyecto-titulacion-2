@@ -4,39 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/login.css" />
+    <style>
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+      }
+
+      .message-box {
+        display: none;
+        position: absolute;
+        top: 140px; /* Ajusta la posición vertical según tu diseño */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffcccc;
+        border: 1px solid #ff3333;
+        padding: 10px;
+      }
+
+      .success-message {
+        color: green;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+      }
+    </style>
     <title>Login</title>
   </head>
   <body>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
       function onSubmit(token) {
-        document.getElementById("user-form").submit();
+        // Validar campos antes de enviar el formulario
+        if (validarCampos()) {
+          // Aquí puedes agregar lógica para verificar si el usuario existe
+          var usuarioEncontrado = false; // Cambia esto con tu lógica de verificación de usuario
+
+          if (usuarioEncontrado) {
+            document.getElementById("user-form").submit();
+          } else {
+            // Mostrar mensaje de error de usuario no encontrado
+            mostrarMensaje("Usuario no encontrado. Verifica tus credenciales.", "error");
+          }
+        } 
+      }
+
+      function validarCampos() {
+        // Obtener los valores de los campos
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Reiniciar mensajes de validación
+        document.getElementById("email-error").innerHTML = "";
+        document.getElementById("password-error").innerHTML = "";
+
+        // Verificar si los campos están vacíos
+        var valido = true;
+        if (email.trim() === "") {
+          document.getElementById("email-error").innerHTML =
+            "Este campo es obligatorio.";
+          valido = false;
+        }
+
+        if (password.trim() === "") {
+          document.getElementById("password-error").innerHTML =
+            "Este campo es obligatorio.";
+          valido = false;
+        }
+
+        return valido; // Si todo está bien, permite enviar el formulario
+      }
+
+      function mostrarMensaje(mensaje, tipo) {
+        var messageBox = document.getElementById("message-box");
+        messageBox.innerHTML = mensaje;
+
+        if (tipo === "error") {
+          messageBox.style.backgroundColor = "#ffcccc";
+          messageBox.style.border = "1px solid #ff3333";
+          messageBox.style.color = "red";
+        } 
+        messageBox.style.display = "block";
       }
     </script>
 
     <div class="center-container">
       <h1 class="login-header">Login</h1>
       <form action="/login" method="POST" id="user-form" class="center-content">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Escribe tu email"
-          required="true"
-        />
+        <div>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Escribe tu email"
+            required="true"
+          />
+          <span id="email-error" class="error-message"></span>
+        </div>
         <br />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Escribe tu contraseña"
-          required="true"
-        />
+        <div>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Escribe tu contraseña"
+            required="true"
+          />
+          <span id="password-error" class="error-message"></span>
+        </div>
+        <br />
+        <div id="message-box" class="message-box"></div>
+        <br />
         <button
+          type="button"
           class="g-recaptcha"
           data-sitekey="6Ld255QoAAAAANypXIKZ7fSemDrYq5UjUizfxLBr"
-          data-callback="onSubmit"
-          data-action="submit"
+          onclick="onSubmit()"
         >
           Ingresar
         </button>
@@ -46,7 +130,6 @@
 
       <div class="center-content">
         <a href="forgot_password.ejs">Recordar Contraseña</a>
-
       </div>
     </div>
   </body>

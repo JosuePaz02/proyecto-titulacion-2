@@ -13,7 +13,7 @@ const validateToken = async (req, res, next) => {
     //console.log(email)
 
     if (!email) {
-      return res.status(400).json({ message: "Email is required" });
+      return res.status(400).redirect( "/login");
     }
 
     const userFound = await collection.findOne({ email });
