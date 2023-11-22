@@ -2,8 +2,11 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const { createAcessToken } = require("../libs/jwt.js");
 const { client, dbName } = require("../database.js");
-const session = require('express-session')
-const { iniciarSesionExitosa } = require("../middlewares/sessionsMap.js");
+const session = require("express-session");
+const {
+  agregarSesionConMovimientosYHorarios,
+  obtenerDatosDeSesionConMovimientosYHorarios,
+} = require("../middlewares/sessionsMap.js");
 
 //*Registro usuarios
 const registroGet = (req, res) => {
@@ -67,23 +70,27 @@ const loginUsuario = async (req, res) => {
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
-    req.session.email = userFound.email
-    req.session.id = userFound._id
+    console.log(userFound._id)
+
+    req.session.email = userFound.email;
+    req.session.userId = userFound._id
+    console.log('Este es el id de session: ', req.session.userId)
 
     const token = await createAcessToken({ id: userFound._id });
-    console.log(token)
+    //console.log(token);
 
-    const filtro = {_id: userFound._id}
+    const filtro = { _id: userFound._id };
+    console.log('Este es el filto: ', filtro)
 
     const tokenMongo = { $set: { jwt: token } };
 
     //iniciarSesionExitosa(userFound._id, token);
     //res.header("authorization", token);
-    
-    const result = await collection.updateOne(filtro, tokenMongo)
-    const daatosSession = {email: userFound.email}
 
-    agregarSesionConMovimientosYHorarios(userFound._id, daatosSession)
+    const result = await collection.updateOne(filtro, tokenMongo);
+    const daatosSession = { email: userFound.email };
+
+    agregarSesionConMovimientosYHorarios(userFound._id, daatosSession);
 
     /* res.json({
       id: userFound._id,
@@ -97,20 +104,25 @@ const loginUsuario = async (req, res) => {
   }
 };
 
-const linksGet = (req, res) => {
-  const emailUser = req.session.email
-  const idUser = req.session.id
+const linksGet = async (req, res) => {
+  const emailUser = req.session.email;
+  const idUser = req.session.userId;
+  console.log('Este es el idUser: ',idUser);
 
-  setInterval(() => {
-    const datosSesionUsuario = obtenerDatosDeSesionConMovimientosYHorarios(idUser);
-  
+  setInterval(async () => {
+    const datosSesionUsuario =
+      await obtenerDatosDeSesionConMovimientosYHorarios(idUser);
+    console.log(datosSesionUsuario);
+
     if (datosSesionUsuario) {
-      console.log(`Datos de sesión actualizados: ${JSON.stringify(datosSesionUsuario)}`);
+      console.log(
+        `Datos de sesión actualizados: ${JSON.stringify(datosSesionUsuario)}`
+      );
     } else {
-      console.log('Usuario no autenticado');
+      console.log("Usuario no autenticado");
     }
   }, 10000);
-  console.log(emailUser)
+  console.log(emailUser);
   res.render("links.ejs");
 };
 

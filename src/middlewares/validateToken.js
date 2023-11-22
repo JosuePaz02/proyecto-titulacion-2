@@ -10,7 +10,7 @@ const validateToken = async (req, res, next) => {
     
     // Asegurémonos de que haya un email en req.body
     const email = req.session.email;
-    console.log(email)
+    //console.log(email)
 
     if (!email) {
       return res.status(400).json({ message: "Email is required" });
