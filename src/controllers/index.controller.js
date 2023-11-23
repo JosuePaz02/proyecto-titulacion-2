@@ -66,11 +66,11 @@ const loginUsuario = async (req, res) => {
 
   try {
     const userFound = await collection.findOne({ email: email });
-    if (!userFound)  return res.render("login.ejs", { errorMessage: "Usuario no encontrado", showError: true });
+    if (!userFound) return res.status(400).json(["User not found"]);
 
 
     const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch) return res.render("login.ejs", { errorMessage: "Usuario no encontrado", showError: true })
+    if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
     console.log(userFound._id)
 

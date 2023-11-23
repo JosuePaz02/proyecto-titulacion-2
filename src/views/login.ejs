@@ -36,18 +36,7 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
       function onSubmit(token) {
-        // Validar campos antes de enviar el formulario
-        if (validarCampos()) {
-          // Aquí puedes agregar lógica para verificar si el usuario existe
-          var usuarioEncontrado = false; // Cambia esto con tu lógica de verificación de usuario
-
-          if (usuarioEncontrado) {
             document.getElementById("user-form").submit();
-          } else {
-            // Mostrar mensaje de error de usuario no encontrado
-            mostrarMensaje("Usuario no encontrado. Verifica tus credenciales.", "error");
-          }
-        } 
       }
 
       function validarCampos() {
