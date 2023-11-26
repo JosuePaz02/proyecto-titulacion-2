@@ -125,7 +125,7 @@ const linksGet = async (req, res) => {
     }
   }, 10000);
   console.log(emailUser);
-  res.render("links.ejs");
+  res.render("menu.ejs");
 };
 
 module.exports = {
