@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> <!-- aqui metemos la interfaz de generar link y de registro -->
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/login.css" />
     <title>Menu</title>
 </head>
 <body>
-    <div style="text-align: center;">
-        <h1>Hola Juan</h1>  
+ 
+    <div class="container">
+        <div class="options">
+            <a class="login-header1" href="/links.ejs">Generar Link</a>
+            <a class="login-header1" href="/registro">Registrarme</a>
+            <a class="login-header1" href="/configuracion">configuracion</a>
+            <a class="login-header1" href="/logout">logout</a>
+
+        </div>
+
+        <div style="text-align: center;">
+            <h1 class="login-header">Hola Juan </h1>  
+        </div>
     </div>
 
-    <div style="float: left; margin-top: 20px; margin-left: 20px;">
-    <!--<h2>generar link de pagos</h2>-->
-    <a href="/links.ejs">Generar Link</a>
-    </div>
 
-    <div style="float: left; margin-top: 20px; margin-left: 20px;">
-    <!--<h2>Registro</h2>-->
-    <a href="/registro">Registrarme</a>
 
-    </div>
 
-    
 
 </body>
 </html>

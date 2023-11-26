@@ -111,4 +111,29 @@ input[name="tel_number"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  flex-direction: left; 
+}
+
+.options {
+  margin-top: 20px;
+  margin: 0;
+  text-align: left;
+  margin-left: 0;
+  padding: 20px;
+  position: absolute;
+  left: 0;
+}
+
+.login-header1 {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
 
