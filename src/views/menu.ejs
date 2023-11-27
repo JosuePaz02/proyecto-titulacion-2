@@ -10,11 +10,13 @@
  
     <div class="container">
         <div class="options">
-            <a class="login-header1" href="/links.ejs">Generar Link</a>
+            <a class="login-header1" href="/links">Generar Link</a>
             <a class="login-header1" href="/registro">Registrarme</a>
             <a class="login-header1" href="/configuracion">configuracion</a>
             <a class="login-header1" href="/logout">logout</a>
-
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
         </div>
 
         <div style="text-align: center;">
