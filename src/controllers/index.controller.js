@@ -74,15 +74,14 @@ const loginUsuario = async (req, res) => {
 
     console.log(userFound._id)
 
-    req.session.email = userFound.email;
     req.session.userId = userFound._id
-    console.log('Este es el id de session: ', req.session.userId)
+    //console.log('Este es el id de session: ', req.session.userId)
 
     const token = await createAcessToken({ id: userFound._id });
     //console.log(token);
 
     const filtro = { _id: userFound._id };
-    console.log('Este es el filto: ', filtro)
+    //console.log('Este es el filto: ', filtro)
 
     const tokenMongo = { $set: { jwt: token } };
 
@@ -90,7 +89,7 @@ const loginUsuario = async (req, res) => {
     //res.header("authorization", token);
 
     const result = await collection.updateOne(filtro, tokenMongo);
-    const daatosSession = { email: userFound.email };
+    const daatosSession = { email: userFound.email, token: token };
 
     agregarSesionConMovimientosYHorarios(userFound._id, daatosSession);
 
@@ -109,12 +108,12 @@ const loginUsuario = async (req, res) => {
 const linksGet = async (req, res) => {
   const emailUser = req.session.email;
   const idUser = req.session.userId;
-  console.log('Este es el idUser: ',idUser);
+  //console.log('Este es el idUser: ',idUser);
 
   setInterval(async () => {
     const datosSesionUsuario =
       await obtenerDatosDeSesionConMovimientosYHorarios(idUser);
-    console.log(datosSesionUsuario);
+    //console.log(datosSesionUsuario);
 
     if (datosSesionUsuario) {
       console.log(

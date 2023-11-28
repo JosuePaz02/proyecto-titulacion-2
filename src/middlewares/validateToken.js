@@ -1,34 +1,32 @@
 const jwt = require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../config.js");
-const session = require('express-session')
-const { client, dbName } = require("../database.js");
+const {obtenerDatosDeSesionConMovimientosYHorarios} = require('./sessionsMap.js')
 
 const validateToken = async (req, res, next) => {
   try {
-    const db = client.db(dbName);
-    const collection = db.collection("users");
-    
     // Asegurémonos de que haya un email en req.body
-    const email = req.session.email;
-    //console.log(email)
 
-    if (!email) {
-      return res.status(400).json({ message: "Email is required" });
+    const idMap = req.session.userId
+
+    const resulTMap = obtenerDatosDeSesionConMovimientosYHorarios(idMap)
+    console.log(resulTMap)
+
+    if (!idMap) {
+      return res.status(400).json({ message: "Id is required" });
     }
 
-    const userFound = await collection.findOne({ email });
-    console.log(userFound)
-
-    if (!userFound || !userFound.jwt) {
+    if (!resulTMap || !resulTMap.token) {
       return res.status(401).json({ message: "No token found, authorization denied" });
     }
 
-    const token = userFound.jwt;
+    const token = resulTMap.token;
 
     const user = await jwt.verify(token, TOKEN_SECRET);
 
     req.user = user;
+    console.log('Paso la verificacion de token')
     next();
+
   } catch (error) {
     if (error.name === "TokenExpiredError") {
       return res.status(401).redirect('/login');

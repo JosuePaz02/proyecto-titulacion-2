@@ -7,7 +7,7 @@ const agregarSesionConMovimientosYHorarios = (idSesion, datosSesion) => {
   //! Agregar la hora de inicio
   datosSesion.horaInicio = new Date();
   sessionsMap.set(idSesion, datosSesion);
-  console.log('Este es el estado del mapa:', sessionsMap);
+  //console.log('Este es el estado del mapa:', sessionsMap);
 }
 
 //* Ejemplo de cómo obtener información de una sesión con movimientos y horarios
