@@ -373,3 +373,28 @@
       width: 100%;
     }
   }
+
+  .welcome-message {
+    background-color: var(--sidebar-background);
+    color: var(--text-link);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px auto; /* Ajusta el margen para centrarlo horizontalmente */
+    max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+    text-align: center;
+    position: fixed; /* Cambia a posición fija */
+    font-size: 40px;
+    top: 20px; /* Posiciona en la mitad superior */
+    left: 32%; /* Posiciona en el centro horizontal */
+    transform: translate(-50%); /* Centra completamente */
+    z-index: 1000; /* Ajusta el índice z para que aparezca encima de otros elementos si es necesario */
+    display: none; /* Oculta inicialmente */
+    pointer-events: none; /* No captura eventos para que los clics pasen a través de él */
+  }
+  
+  .show {
+    display: block; /* Muestra cuando tiene la clase 'show' */
+  }
+  
+  
+  

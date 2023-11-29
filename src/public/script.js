@@ -1,31 +1,30 @@
 const expand_btn = document.querySelector(".expand-btn");
-
-let activeIndex;
+const welcomeMessage = document.getElementById("welcomeMessage");
+const allLinks = document.querySelectorAll(".sidebar-links a");
 
 expand_btn.addEventListener("click", () => {
   document.body.classList.toggle("collapsed");
 });
 
-const current = window.location.href;
-
-const allLinks = document.querySelectorAll(".sidebar-links a");
-
 allLinks.forEach((elem) => {
-  elem.addEventListener("click", function () {
-    const hrefLinkClick = elem.href;
+  elem.addEventListener("click", function (event) {
+    // Oculta el mensaje de bienvenida al hacer clic en cualquier enlace
+    if (welcomeMessage) {
+      welcomeMessage.classList.remove("show");
+    }
+
+    const hrefLinkClick = elem.getAttribute("href");
 
     allLinks.forEach((link) => {
-      if (link.href == hrefLinkClick) {
+      if (link.getAttribute("href") === hrefLinkClick) {
         link.classList.add("active");
+        // Muestra el mensaje solo cuando se hace clic en el enlace de inicio (home)
+        if (hrefLinkClick === "#home" && welcomeMessage) {
+          welcomeMessage.classList.add("show");
+        }
       } else {
         link.classList.remove("active");
       }
     });
   });
-});
-
-const searchInput = document.querySelector(".search__wrapper input");
-
-searchInput.addEventListener("focus", (e) => {
-  document.body.classList.remove("collapsed");
 });
