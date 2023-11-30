@@ -1,5 +1,6 @@
 const expand_btn = document.querySelector(".expand-btn");
 const welcomeMessage = document.getElementById("welcomeMessage");
+const linkspago = document.getElementById("/src/views/links.ejs");
 const allLinks = document.querySelectorAll(".sidebar-links a");
 
 expand_btn.addEventListener("click", () => {
@@ -12,6 +13,9 @@ allLinks.forEach((elem) => {
     if (welcomeMessage) {
       welcomeMessage.classList.remove("show");
     }
+    if (linkspago) {
+      linkspago.classList.remove("show");
+    }
 
     const hrefLinkClick = elem.getAttribute("href");
 
@@ -21,6 +25,9 @@ allLinks.forEach((elem) => {
         // Muestra el mensaje solo cuando se hace clic en el enlace de inicio (home)
         if (hrefLinkClick === "#home" && welcomeMessage) {
           welcomeMessage.classList.add("show");
+        }
+        if (hrefLinkClick === "#links" && linkspago) {
+          linkspago.classList.add("show");
         }
       } else {
         link.classList.remove("active");
