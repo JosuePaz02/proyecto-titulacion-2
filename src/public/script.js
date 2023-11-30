@@ -1,6 +1,6 @@
 const expand_btn = document.querySelector(".expand-btn");
 const welcomeMessage = document.getElementById("welcomeMessage");
-const linkspago = document.getElementById("/src/views/links.ejs");
+const linkspago = document.getElementById("linkspago");
 const allLinks = document.querySelectorAll(".sidebar-links a");
 
 expand_btn.addEventListener("click", () => {

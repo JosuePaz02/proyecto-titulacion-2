@@ -42,6 +42,7 @@
     flex-direction: column;
     background-color: var(--sidebar-background);
     transition: max-width 0.1s ease-in-out;
+    z-index: 1000;
   }
   
   body.collapsed .sidebar {
@@ -387,7 +388,7 @@
     top: 20px; /* Posiciona en la mitad superior */
     left: 32%; /* Posiciona en el centro horizontal */
     transform: translate(-50%); /* Centra completamente */
-    z-index: 1000; /* Ajusta el índice z para que aparezca encima de otros elementos si es necesario */
+    z-index: 0; /* Ajusta el índice z para que aparezca encima de otros elementos si es necesario */
     display: none; /* Oculta inicialmente */
     pointer-events: none; /* No captura eventos para que los clics pasen a través de él */
   }
