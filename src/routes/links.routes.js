@@ -1,16 +1,18 @@
-const express = require('express')
-const { linksGet } = require('../controllers/index.controller.js')
-/*moi*/
-const {vistaprincipal, vistalinks, vistanotificaciones} = require('../controllers/controller.js')
-/*router.get('/', vistaprincipal)*/
-/*router.get('/links', vistalinks)
-/*router.get('/notificaciones',vistanotificaciones)
+const express = require("express");
+const { linksGet } = require("../controllers/menu.controller.js");
+const {
+  vistaprincipal,
+  vistalinks,
+  vistanotificaciones,
+} = require("../controllers/menu.controller.js");
 
-/*module.exports = {routes : links.routes}*/
+const router = express.Router();
 
-const router = express.Router()
+//*Menus
+router.get("/menu", linksGet);
 
-//*Links
-router.get('/menu', linksGet)
+router.get("/vistaprincipal", vistaprincipal);
+router.get("/vistalinks", vistalinks);
+router.get("/vistanotificaciones", vistanotificaciones);
 
-module.exports = router
+module.exports = router;

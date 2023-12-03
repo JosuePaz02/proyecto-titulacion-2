@@ -5,7 +5,6 @@ const { client, dbName } = require("../database.js");
 const session = require("express-session");
 const {
   agregarSesionConMovimientosYHorarios,
-  obtenerDatosDeSesionConMovimientosYHorarios,
 } = require("../middlewares/sessionsMap.js");
 
 //*Registro usuarios
@@ -68,13 +67,12 @@ const loginUsuario = async (req, res) => {
     const userFound = await collection.findOne({ email: email });
     if (!userFound) return res.status(400).json(["User not found"]);
 
-
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
-    console.log(userFound._id)
+    console.log(userFound._id);
 
-    req.session.userId = userFound._id
+    req.session.userId = userFound._id;
     //console.log('Este es el id de session: ', req.session.userId)
 
     const token = await createAcessToken({ id: userFound._id });
@@ -105,32 +103,9 @@ const loginUsuario = async (req, res) => {
   }
 };
 
-const linksGet = async (req, res) => {
-  const emailUser = req.session.email;
-  const idUser = req.session.userId;
-  //console.log('Este es el idUser: ',idUser);
-
-  setInterval(async () => {
-    const datosSesionUsuario =
-      await obtenerDatosDeSesionConMovimientosYHorarios(idUser);
-    //console.log(datosSesionUsuario);
-
-    if (datosSesionUsuario) {
-      console.log(
-        `Datos de sesión actualizados: ${JSON.stringify(datosSesionUsuario)}`
-      );
-    } else {
-      console.log("Usuario no autenticado");
-    }
-  }, 10000);
-  console.log(emailUser);
-  res.render("menu.ejs");
-};
-
 module.exports = {
   registroUsuarios,
   loginUsuario,
-  linksGet,
   loginGet,
   registroGet,
 };
