@@ -136,3 +136,13 @@ input[name="tel_number"] {
   margin-bottom: 10px;
   font-size: 18px;
 }
+
+/* MODAL */
+
+#modal::backdrop{
+  background-color: rgba(0,0,0,.55);
+}
+
+#modal{
+  max-width: 50ch;
+}
