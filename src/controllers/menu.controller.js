@@ -27,7 +27,7 @@ const vistaprincipal = (req, res) => {
 };
 
 const vistalinks = (req, res) => {
-  res.render("links");
+  res.render("links.ejs");
 };
 const vistanotificaciones = (req, res) => {
   res.render("notificaciones");
