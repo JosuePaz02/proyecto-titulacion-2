@@ -13,11 +13,11 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="../public/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/public/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../public//assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link href="/public/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../public/assets/css/demo.css" rel="stylesheet" />
+  <link href="/public/assets/css/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -173,6 +173,10 @@
 
       <!--inicio contenido de vistas principales-->
       <%- include('home.ejs'); %>
+      
+      <%- include('links.ejs'); %>
+      <%- include('notificaciones.ejs'); %>
+
       <!--fin de contenido de inicio del menu-->
 
 
@@ -247,20 +251,20 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../public/assets/js/core/jquery.min.js"></script>
-  <script src="../public/assets/js/core/popper.min.js"></script>
-  <script src="../public/assets/js/core/bootstrap.min.js"></script>
-  <script src="../public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/public/assets/js/core/jquery.min.js"></script>
+  <script src="/public/assets/js/core/popper.min.js"></script>
+  <script src="/public/assets/js/core/bootstrap.min.js"></script>
+  <script src="/public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="../public/assets/js/plugins/chartjs.min.js"></script>
+  <script src="/public/assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="../public/assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="/public/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../public/assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../public/assets/demo/demo.js"></script>
+  <script src="/public/assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="/public/assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {

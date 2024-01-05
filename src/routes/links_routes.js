@@ -11,7 +11,7 @@ const router = express.Router()
 //*Menus
 router.get("/menu", linksGet)
 
-router.get("/vistaprincipal", vistaprincipal)
+router.get("/home", vistaprincipal)
 router.get("/links", vistalinks)
 router.get("/notificaciones", vistanotificaciones)
 
