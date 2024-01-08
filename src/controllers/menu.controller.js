@@ -19,7 +19,7 @@ const linksGet = async (req, res) => {
       console.log("Usuario no autenticado");
     }
   }, 10000);
-  res.render("menu.ejs");
+  res.render("layout.ejs");
 };
 
 const vistaprincipal = (req, res) => {

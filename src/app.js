@@ -21,6 +21,7 @@ app.use(session({
 
 
 app.set('view engine', 'ejs')
+app.use(expressLayouts)
 app.use(indexRoutes)
 app.use('/api', validateToken, linksRoutes)
 
@@ -30,10 +31,10 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 //const routerr = require ('./routes/links_routes.js') es lo que estamos haciendo ahorita 
 //app.use(routerr.linksRoutes) es lo que estamos haciendo ahorita
 /*moi*/
-app.use(expressLayouts)
+
 //utilizamos el router
-require('./routes/links_routes.js') //creo que por esto como esta repetido dos veces no jala como dice este josue 
-app.use(linksRoutes)
+
+
 //finmoi
 
 module.exports = app
