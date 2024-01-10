@@ -55,7 +55,7 @@ const registroUsuarios = async (req, res) => {
 //*Login de usuarios
 
 const loginGet = (req, res) => {
-  res.render("login.ejs");
+  res.render("login.ejs", { layout: false });
 };
 
 const loginUsuario = async (req, res) => {

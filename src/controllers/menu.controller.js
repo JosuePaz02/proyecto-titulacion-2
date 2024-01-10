@@ -19,23 +19,22 @@ const linksGet = async (req, res) => {
       console.log("Usuario no autenticado");
     }
   }, 10000);
-  res.render("menu.ejs");
-};
-
-const vistaprincipal = (req, res) => {
   res.render("home");
 };
 
+/* const vistaprincipal = (req, res) => {
+  res.render("home");
+}; */
+
 const vistalinks = (req, res) => {
-  res.render("links.ejs");
+  res.render("links");
 };
 const vistanotificaciones = (req, res) => {
-  res.render("notificaciones.ejs");
+  res.render("notificaciones");
 };
 
 module.exports = {
   linksGet,
-  vistaprincipal,
   vistalinks,
   vistanotificaciones,
 };
