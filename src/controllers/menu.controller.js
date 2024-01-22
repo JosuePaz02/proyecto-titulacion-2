@@ -41,9 +41,9 @@ module.exports = {
 
 //aqui voy a poner los scripts para la ventana modal
 
-//const btnAbrirModal = document.querySelector("#btn-abrir-modal");
-//const btnCerrarModal = document.querySelector("#btn-cerrar-modal");
-//const modal = document.querySelector("#modal");
+function btnAbrirModal()  {document.querySelector("#btn-abrir-modal")}
+function  btnCerrarModal()  {document.querySelector("#btn-cerrar-modal")}
+function modal()  {document.querySelector("#modal")}
 
 //btnAbrirModal.addEventListener("click",()=>{
   //modal.showModal();
