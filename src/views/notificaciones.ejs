@@ -1,3 +1,74 @@
-<div class="card ">
-    <h1>hola </h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Estilos para la ventana modal */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #myModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modalContent {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    #closeBtn {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botón para abrir la ventana modal -->
+     <button onclick="openModal()">Abrir Venta Modal</button>
+
+<!-- Ventana modal -->
+<div id="myModal">
+  <div id="modalContent">
+    <span id="closeBtn" onclick="closeModal()">&times;</span>
+    <p>Contenido de la venta modal</p>
+  </div>
 </div>
+
+<script>
+  // Función para abrir la ventana modal
+  function openModal() {
+    document.getElementById('myModal').style.display = 'flex';
+  }
+
+  // Función para cerrar la ventana modal
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Cerrar la ventana modal haciendo clic fuera de ella
+  window.addEventListener('click', function(event) {
+    var modal = document.getElementById('myModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
