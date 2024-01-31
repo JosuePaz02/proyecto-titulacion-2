@@ -44,4 +44,4 @@ const cerrarSesionConMovimientosYHorarios = (idSesion) => {
   }
 }
 
-module.exports = {agregarSesionConMovimientosYHorarios, obtenerDatosDeSesionConMovimientosYHorarios, agregarMovimientoASesion, actualizarDatosDeSesionConMovimientosYHorarios, cerrarSesionConMovimientosYHorarios}
+module.exports = {agregarSesionConMovimientosYHorarios, obtenerDatosDeSesionConMovimientosYHorarios, agregarMovimientoASesion, actualizarDatosDeSesionConMovimientosYHorarios, cerrarSesionConMovimientosYHorarios, sessionsMap}

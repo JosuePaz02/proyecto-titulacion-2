@@ -70,7 +70,7 @@ const loginUsuario = async (req, res) => {
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
-    console.log(userFound._id);
+    console.log(`Este es el id del usuario ${userFound._id}`);
 
     req.session.userId = userFound._id;
     //console.log('Este es el id de session: ', req.session.userId)
