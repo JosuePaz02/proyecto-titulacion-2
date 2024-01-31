@@ -3,86 +3,103 @@
   <div class="row">
     <div class="col-12">
       <div class="card card-chart">
-        
-        <html>
-          <head>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1"
-            />
-            <style>
-              body {
-                font-family: Arial, Helvetica, sans-serif;
-              }
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h5 class="card-category">Links creados</h5>
+              <!--<h2 class="card-title">Performance</h2>-->
+            </div>
+            <div class="col-sm-6">
+              <div class="btn-group btn-group-toggle float-right"data-toggle="buttons">
+                <html>
+                <head>
+                  <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                  />
+                  <style>
+                    body {
+                      font-family: Arial, Helvetica, sans-serif;
+                    }
 
-              /* Fondo modal: negro con opacidad al 50% */
-              .modal {
-                display: none; /* Por defecto, estará oculto */
-                position: fixed; /* Posición fija */
-                z-index: 1; /* Se situará por encima de otros elementos de la página*/
-                padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
-                left: 0;
-                top: 0;
-                width: 100%; /* Ancho completo */
-                height: 100%; /* Algura completa */
-                overflow: auto; /* Se activará el scroll si es necesario */
-                background-color: rgba(
-                  0,
-                  0,
-                  0,
-                  0.5
-                ); /* Color negro con opacidad del 50% */
-              }
+                    /* Fondo modal: negro con opacidad al 50% */
+                    .modal {
+                      display: none; /* Por defecto, estará oculto */
+                      position: fixed; /* Posición fija */
+                      z-index: 1; /* Se situará por encima de otros elementos de la página*/
+                      padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
+                      left: 0;
+                      top: 0;
+                      width: 100%; /* Ancho completo */
+                      height: 100%; /* Algura completa */
+                      overflow: auto; /* Se activará el scroll si es necesario */
+                      background-color: rgba(
+                        0,
+                        0,
+                        0,
+                        0.5
+                      ); /* Color negro con opacidad del 50% */
+                    }
 
-              /* Ventana o caja modal */
-              .contenido-modal {
-                position: relative; /* Relativo con respecto al contenedor -modal- */
-                background-color: rgb(115, 0, 255);
-                color: black;
-                margin: auto; /* Centrada */
-                padding: 20px;
-                width: 60%;
-                -webkit-animation-name: animarsuperior;
-                -webkit-animation-duration: 0.5s;
-                animation-name: animarsuperior;
-                animation-duration: 0.5s;
-              }
+                    /* Ventana o caja modal */
+                    .contenido-modal {
+                      position: relative; /* Relativo con respecto al contenedor -modal- */
+                      background-color: #27293c;
+                      color: black;
+                      margin: auto; /* Centrada */
+                      padding: 20px;
+                      width: 60%;
+                      -webkit-animation-name: animarsuperior;
+                      -webkit-animation-duration: 0.5s;
+                      animation-name: animarsuperior;
+                      animation-duration: 0.5s;
+                    }
 
+                    /* Botón cerrar */
+                    .close {
+                      color: white;
+                      float: right;
+                      font-size: 50px;
+                      font-weight: bold;
+                    }
 
+                    .close:hover,
+                    .close:focus {
+                      color: white;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    .cerrar {
+                      color: white;
+                      float: right;
+                      font-size: 50px;
+                      font-weight: bold;
+                    }
+                    .cerrar:hover,
+                    .cerrar:focus {
+                      color: white;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    #abrirModal{
+                      color: #e14eca;
+                      background-color: #27293c;
+                      /*border-color: #e14eca;*/
+                      border: #e14eca 2px solid;
+                      border-radius: 5px;
+                      
+                    }
+                    #abrirModal:hover{
+                      color: white;
+                      background: linear-gradient(70deg, #e14eca, #bc54f3,#e14eca);
+                    }
+                  </style>
+                </head>
+                <body>
+                  <br />
+                  <br />
 
-              /* Botón cerrar */
-              .close {
-                color: white;
-                float: right;
-                font-size: 50px;
-                font-weight: bold;
-              }
-
-              .close:hover,
-              .close:focus {
-                color: white;
-                text-decoration: none;
-                cursor: pointer;
-              }
-              .cerrar{
-                color: white;
-                float: right;
-                font-size: 50px;
-                font-weight: bold;
-              }
-              .cerrar:hover,
-              .cerrar:focus {
-                color: white;
-                text-decoration: none;
-                cursor: pointer;
-              }
-            </style>
-          </head>
-          <body>
-            <br />
-            <br />
-
-            <button id="abrirModal">Abrir Modal</button>
+                  <button id="abrirModal">Generar links</button>
 
             <!-- Ventana modal, por defecto no visiblel -->
             <div id="ventanaModal" class="modal">
@@ -141,7 +158,7 @@
                 </script>
                 <div class="form-container">
                   <h1 class="form-title">Generador de Link</h1>
-                  <form action="/api/generarLink" method="POST" required="true">
+                  <form action="/generar_link" method="POST" required="true">
                     <li>
                       <div class="input-container">
                         <input
@@ -229,180 +246,72 @@
               // Ventana modal
               var modal = document.getElementById("ventanaModal");
 
-              // Botón que abre el modal
-              var boton = document.getElementById("abrirModal");
+                    // Botón que abre el modal
+                    var boton = document.getElementById("abrirModal");
 
-              // Hace referencia al elemento <span> que tiene la X que cierra la ventana
-              var span = document.getElementsByClassName("cerrar")[0];
+                    // Hace referencia al elemento <span> que tiene la X que cierra la ventana
+                    var span = document.getElementsByClassName("cerrar")[0];
 
-              // Cuando el usuario hace click en el botón, se abre la ventana
-              boton.addEventListener("click", function () {
-                modal.style.display = "block";
-              });
+                    // Cuando el usuario hace click en el botón, se abre la ventana
+                    boton.addEventListener("click", function () {
+                      modal.style.display = "block";
+                    });
 
-              // Si el usuario hace click en la x, la ventana se cierra
-              span.addEventListener("click", function () {
-                modal.style.display = "none";
-              });
+                    // Si el usuario hace click en la x, la ventana se cierra
+                    span.addEventListener("click", function () {
+                      modal.style.display = "none";
+                    });
 
-              // Si el usuario hace click fuera de la ventana, se cierra.
-              window.addEventListener("click", function (event) {
-                if (event.target == modal) {
-                  modal.style.display = "none";
-                }
-              });
-            </script>
-          </body>
-        </html>
-
-        <!--<head>
-          <meta charset="UTF-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <link rel="stylesheet" href="/public/assets/.css" />
-          <title>Generador</title>
-        </head>
-        <body>
-          a estos script me refiero si los podemos mover
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const montoInput = document.getElementById("monto");
-              const mesesRadio = document.getElementsByName("meses");
-
-              montoInput.addEventListener("input", function () {
-                const monto = parseInt(montoInput.value, 10);
-
-                // Habilitar opciones de meses según la condición del monto
-                if (monto > 0 && monto < 300) {
-                  habilitarOpciones([0]); // Agregamos el índice 3 para el pago único
-                } else if (monto >= 300 && monto < 600) {
-                  habilitarOpciones([0, 1]); // Agregamos el índice 3 para el pago único
-                } else if (monto >= 600 && monto < 1200) {
-                  habilitarOpciones([0, 1, 2]); // Agregamos el índice 3 para el pago único
-                } else if (monto >= 1200) {
-                  habilitarOpciones([0, 1, 2, 3]); // Agregamos el índice 3 para el pago único
-                } else {
-                  deshabilitarOpciones();
-                }
-              });
-
-              function habilitarOpciones(opciones) {
-                // Habilitar las opciones indicadas en el array
-                for (let i = 0; i < mesesRadio.length; i++) {
-                  mesesRadio[i].disabled = !opciones.includes(i);
-                  mesesRadio[i].checked = false;
-                }
-              }
-
-              function deshabilitarOpciones() {
-                // Deshabilitar todas las opciones
-                for (let i = 0; i < mesesRadio.length; i++) {
-                  mesesRadio[i].disabled = true;
-                  mesesRadio[i].checked = false;
-                }
-              }
-
-              // Event listener para desmarcar radio buttons cuando se hace clic en su label
-              const labels = document.querySelectorAll(
-                ".input-container label"
-              );
-              labels.forEach((label) => {
-                label.addEventListener("click", function () {
-                  const radio = this.previousElementSibling;
-                  radio.checked = !radio.checked;
-                });
-              });
-            });
-          </script>
-
-          <div class="form-container">
-            <h1 class="form-title">Generador de Link</h1>
-            <form action="/generar_link" method="POST" required="true">
-              <li>
-                <div class="input-container">
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Nombre del cliente"
-                    required
-                  />
-                  <button type="button" id="miBoton" disabled>Botón</button>
-                </div>
-              </li>
-              <li>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email del cliente"
-                  required
-                />
-              </li>
-              <li>
-                <div class="input-container">
-                  <input
-                    type="text"
-                    id="telefono"
-                    name="telefono"
-                    placeholder="Teléfono del cliente"
-                    required
-                  />
-                </div>
-              </li>
-              <li>
-                <input
-                  type="text"
-                  id="monto"
-                  name="monto"
-                  placeholder="Monto"
-                  required
-                />
-              </li>
-              <li>
-                <input type="radio" id="mes" name="meses" value="1" disabled />
-                <label for="mes3">Pago único</label>
-              </li>
-              <li>
-                <input type="radio" id="mes" name="meses" value="3" disabled />
-                <label for="mes0">3 meses</label>
-              </li>
-              <li>
-                <input type="radio" id="mes" name="meses" value="6" disabled />
-                <label for="mes1"> 6 meses</label>
-              </li>
-              <li>
-                <input type="radio" id="mes" name="meses" value="12" disabled />
-                <label for="mes2">12 meses</label>
-              </li>
-
-              <br />
-
-              <textarea
-                id="descripcion"
-                name="descripcionTextArea"
-                rows="2"
-                cols="30"
-                placeholder="Descripcion"
-                required
-              ></textarea>
-              <br />
-
-              <div class="input-container">
-                <button>Generador</button>
+                    // Si el usuario hace click fuera de la ventana, se cierra.
+                    window.addEventListener("click", function (event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                      }
+                    });
+                  </script>
+                </body>
+              </html>
               </div>
-            </form>
+            </div>
+            
+              
+              <div class="card-body">
+                <div class="chart-area">
+                  <!--<canvas id="chartBig1"></canvas>-->
+                  <h1>Links creados</h1>
+                </div>
+              </div>
           </div>
-
-          <div>
-            <form action="/logout" method="POST">
-              <button>Logout</button>
-            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Sub-total pagado</h5>
+          <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <!--<canvas id="chartLinePurple"></canvas>-->
           </div>
-        </body>-->
-        
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Sub-total Monto de links</h5>
+          <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12</h3>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <!--<canvas id="chartLineGreen"></canvas>-->
+          </div>
+        </div>
       </div>
     </div>
   </div>
