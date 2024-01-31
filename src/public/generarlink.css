@@ -88,12 +88,12 @@
                       margin: 4px 2px;
                       cursor: pointer;
                       border-radius: 8px;
-                      border: 2px solid #4CAF50;
+                      
                   }
                   
                   
                     .boton-modal:hover {
-                      background-color: #8e44ad;
+                      background-color: #9d59ba;
                     }
 
                     .card.card-chart {
@@ -152,7 +152,7 @@ textarea {
 }
 
 #generar:hover {
-  background-color: #45a049;
+  background-color: #9d59ba;
 }
 
 
