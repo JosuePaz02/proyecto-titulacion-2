@@ -1,0 +1,167 @@
+                    body {
+                      font-family: Arial, Helvetica, sans-serif;
+                    }
+
+                    /* Fondo modal: negro con opacidad al 50% */
+                    .modal {
+                      display: none; /* Por defecto, estará oculto */
+                      position: fixed; /* Posición fija */
+                      z-index: 1; /* Se situará por encima de otros elementos de la página*/
+                      padding-top: 10%; /* El contenido estará situado a 200px de la parte superior */
+                      left: 0;
+                      top: 0;
+                      width: 100%; /* Ancho completo */
+                      height: 100%; /* Algura completa */
+                      overflow: auto; /* Se activará el scroll si es necesario */
+                      background-color: rgba(
+                        0,
+                        0,
+                        0,
+                        0.5
+                      ); /* Color negro con opacidad del 50% */
+                    }
+
+                    /* Ventana o caja modal */
+                    .contenido-modal {
+                      position: relative; /* Relativo con respecto al contenedor -modal- */
+                      background-color: rgb(51, 51, 51);
+                      color: black;
+                      margin: auto; /* Centrada */
+                      padding: 20px;
+                      width: 30%;
+                      -webkit-animation-name: animarsuperior;
+                      -webkit-animation-duration: 0.5s;
+                      animation-name: animarsuperior;
+                      animation-duration: 0.5s;
+                    }
+
+
+
+                    /* Botón cerrar */
+                    .close {
+                      color: white;
+                      float: right;
+                      font-size: 50px;
+                      font-weight: bold;
+                    }
+
+                    .close:hover,
+                    .close:focus {
+                      color: white;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    .cerrar {
+                      color: white;
+                      float: right;
+                      font-size: 50px;
+                      font-weight: bold;
+                    }
+                    .cerrar:hover,
+                    .cerrar:focus {
+                      color: white;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+
+                    .texto-izquierda {
+                      position: absolute;
+                      top: 10%; /* Alineado con el borde superior */
+                      left: 3%; /* Alineado con el borde izquierdo */
+                      color: white; /* Color del texto */
+                      font-weight: bold; /* Negrita */
+                      font-size: 50px; /* Tamaño del texto */
+                  }
+                 
+                    .boton-modal {
+                      position: absolute;
+                      top: 20px; /* distancia desde la parte superior */
+                      right: 5%; /* distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
+                      background-color: #8e44ad;
+                      border: none;
+                      color: white;
+                      padding: 10px 20px;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 16px;
+                      margin: 4px 2px;
+                      cursor: pointer;
+                      border-radius: 8px;
+                      border: 2px solid #4CAF50;
+                  }
+                  
+                  
+                    .boton-modal:hover {
+                      background-color: #8e44ad;
+                    }
+
+                    .card.card-chart {
+                      /* Ajustar el padding para dejar espacio alrededor del botón */
+                      padding: 10%;
+                    }
+
+                    /* Estilos para el formulario dentro de la ventana modal */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 20; /* Para eliminar el margen inferior del último grupo */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#generar {
+  background-color: #8e44ad;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: block; /* Cambiado a "block" para permitir la alineación horizontal */
+  font-size: 16px;
+  margin: 10px auto; /* "auto" en el margen horizontal para centrar */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#generar:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+
+                    
+
+                    
+
+                     
