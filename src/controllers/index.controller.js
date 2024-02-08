@@ -60,10 +60,14 @@ const loginGet = (req, res) => {
 
 const loginUsuario = async (req, res) => {
   const { email, password } = req.body;
+  if (!email) return res.status(400).json(["Favor ingresa el email"]);
+  if (!password)
+    return res.status(400).json(["Favor de ingresar la contraseña"]);
   const db = client.db(dbName);
   const collection = db.collection("users");
 
   try {
+    console.log(req.body);
     const userFound = await collection.findOne({ email: email });
     if (!userFound) return res.status(400).json(["User not found"]);
 
