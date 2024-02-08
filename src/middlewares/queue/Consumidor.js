@@ -39,7 +39,8 @@ const rabbitMQRpcServer = async () => {
 
         const messageRes = `Su link ha sido procesado con nombre: ${message.nombre}, 
     email: ${message.email}, telefono ${message.telefono}, monto: ${message.monto},
-    a ${message.mes} meses, con descripcion ${message.desc}, con fecha ${message.fecha_creacion}  `;
+    a ${message.mes} meses, con descripcion ${message.desc}, con fecha ${message.fecha_creacion} ,
+    y este es el link de pago: ${message.pay} `;
 
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(messageRes), {
           correlationId: msg.properties.correlationId,

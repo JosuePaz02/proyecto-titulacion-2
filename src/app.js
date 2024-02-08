@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const indexRoutes = require('./routes/index.routes.js')
 const linksRoutes = require('./routes/links.routes.js')
+const procesPagos = require('./routes/procesamientoPagos.routes.js')
 const path = require('path')
 const expressLayouts = require ('express-ejs-layouts')
 const ejs = require('ejs')
@@ -30,6 +31,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.use(indexRoutes)
 app.use('/api', validateToken, linksRoutes)
+app.use(procesPagos)
 
 
 

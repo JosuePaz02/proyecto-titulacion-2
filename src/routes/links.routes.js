@@ -16,4 +16,8 @@ router.get("/links", vistalinks)
 router.post('/generarLink', generarLink)
 router.get("/notificaciones", vistanotificaciones)
 
+
+//*Links para pagar
+router.get('/banregio/:uuid')
+
 module.exports = router
