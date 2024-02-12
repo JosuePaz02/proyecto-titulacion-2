@@ -13,13 +13,13 @@ body {
   width: 100%; /* Ancho completo */
   height: 100%; /* Algura completa */
   overflow: auto; /* Se activará el scroll si es necesario */
-  background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad del 50% */
+  background-color: rgba(255,255,255,0.326); /* Color negro con opacidad del 50% */
 }
 
 /* Ventana o caja modal */
 .contenido-modal {
   position: relative; /* Relativo con respecto al contenedor -modal- */
-  background-color: rgb(51, 51, 51);
+  background-color: #a4c1f5;
   color: black;
   margin: auto; /* Centrada */
   padding: 20px;
@@ -70,9 +70,9 @@ body {
   position: absolute;
   top: 20px; /* distancia desde la parte superior */
   right: 5%; /* distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
-  background-color: #27293c;
-  border: #e14eca 2px solid;
-  color: #fca1ee;
+  background-color: #4a618c;
+  border: #0d174a 2px solid;
+  color: white;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -84,13 +84,16 @@ body {
 }
 
 .boton-modal:hover {
-  bcolor: #e14eca;
-  background: linear-gradient(70deg, #e14eca, #7a2ca4, #e14eca);
+  color: white;
+  background: linear-gradient(70deg, #0d174a, #4b65e6, #0d174a);
 }
 
 .card.card-chart {
   /* Ajustar el padding para dejar espacio alrededor del botón */
-  padding: 10%;
+  /*el padding se modifica en cuanto se hace más grande la pantalla*/
+  height: 220px;
+  width: 100%;
+  background-color: #a4c1f5;
 }
 
 /* Estilos para el formulario dentro de la ventana modal */
@@ -141,16 +144,16 @@ textarea:focus,
 input[type="text"]:hover,
 input[type="email"]:hover,
 textarea:hover {
-  border-color: rgb(255, 4, 255); /* Cambia el color del borde al estar enfocado o al pasar el ratón */
+  border-color: #0d174a; /* Cambia el color del borde al estar enfocado o al pasar el ratón */
 }
 
 
 
 
 #generar {
-  background-color: rgb(51, 51, 51);
-  border: #e14eca 2px solid;
-  color: #fca1ee;
+  background-color: #4a618c;
+  border: #0d174a 2px solid;
+  color: white;
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
@@ -163,7 +166,7 @@ textarea:hover {
 }
 
 #generar:hover {
-  bcolor: #e14eca;
-  background: linear-gradient(70deg, #e14eca, #7a2ca4, #e14eca);
+  color: white;
+  background: linear-gradient(70deg, #0d174a, #4b65e6, #0d174a);
 }
 
