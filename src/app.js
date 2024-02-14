@@ -8,7 +8,7 @@ const expressLayouts = require ('express-ejs-layouts')
 const ejs = require('ejs')
 const session = require('express-session')
 const {validateToken} = require('./middlewares/validateToken.js')
-
+const flash = require ("connect-flash")
 const app = express()
 
 app.use(express.json())
@@ -19,10 +19,16 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+app.use(flash())
+app.use((req , res, next )=>{
+    res.locals.success_msg = req.flash("success_msg")
+   next();
+});
 
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
+
 
 
 app.use(expressLayouts)

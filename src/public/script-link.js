@@ -75,3 +75,23 @@
                       }
                     });
                   
+    // Cuadro emergente de cuando el link se manda y desaparezca 
+                    document.addEventListener('DOMContentLoaded', function() {
+                      var successMessage = document.getElementById('successMessage');
+                  
+                      if (successMessage) {
+                          // Mostrar el cuadro de mensaje
+                          successMessage.classList.add('show');
+                  
+                          // Desaparecer después de 7 segundos
+                          setTimeout(function() {
+                              successMessage.classList.remove('show');
+                          }, 5000);
+                  
+                          // Manejar el cierre del cuadro
+                          var closeButton = successMessage.querySelector('.close');
+                          closeButton.addEventListener('click', function() {
+                              successMessage.classList.remove('show');
+                          });
+                      }
+                  });

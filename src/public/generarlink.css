@@ -170,3 +170,43 @@ textarea:hover {
   background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
 }
 
+.alert-success {
+  background-color: #007bff; /* Cambia el color de fondo a azul */
+  border-color: #007bff; /* Cambia el color del borde a azul */
+  color: #fff; /* Cambia el color del texto a blanco */
+}
+
+.custom-alert {
+  position: fixed;
+  bottom: 20px; /* Ajusta la distancia desde la parte inferior de la página según tus necesidades */
+  right: 20px;
+  z-index: 1000;
+  width: 300px;
+  border: 1px solid #a4c1f5;
+  background-color: #a4c1f5;
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.custom-alert.show {
+  display: block; /* Mostrar el cuadro cuando la clase "show" esté presente */
+  animation: slide-in  0.5s ease forwards;
+}
+
+.custom-alert .close:hover {
+  color: #fff;
+  opacity:  0.7;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+

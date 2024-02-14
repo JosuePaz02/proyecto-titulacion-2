@@ -55,7 +55,7 @@ const generarLink = (req, res) => {
     console.log(link);
 
     rabbitMQRpcClient(link);
-
+    req.flash ("success_msg", "Link creado")
     return res.redirect("/api/links");
   } catch (error) {
     res.status(500).json({ message: error.message });
