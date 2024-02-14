@@ -1,5 +1,9 @@
 const amqp = require("amqplib");
 const { client, dbName } = require("../../database.js");
+const uuid = require("uuid");
+const bcrypt = require("bcryptjs");
+const {execute} = require('../../sendEmail.js')
+
 const { sessionsMap } = require("../sessionsMap.js");
 
 const rabbitMQRpcServer = async () => {
@@ -22,10 +26,18 @@ const rabbitMQRpcServer = async () => {
         const jsonString = buffer.toString("utf8");
         const message = JSON.parse(jsonString);
 
+        const linkUuid = uuid.v4();
+        const hasUuid = await bcrypt.hash(linkUuid, 10)
+        const cleanHash = hasUuid.replace(/\//g, '')
+
+        const linkPay = `http://localhost:3000/banregio/${cleanHash}`
+        message.pay = linkPay
+    
+
         //console.log(msg.properties);
-        console.log(buffer);
-        console.log(jsonString);
-        console.log(message);
+        //console.log(buffer);
+        //console.log(jsonString);
+        //console.log(message);
         const messageMongo = { $set: { link: message } };
 
         const idUser = message.idUser;
@@ -42,13 +54,28 @@ const rabbitMQRpcServer = async () => {
     a ${message.mes} meses, con descripcion ${message.desc}, con fecha ${message.fecha_creacion} ,
     y este es el link de pago: ${message.pay} `;
 
+    const options = {
+      from: 'jpaz7913@gmail.com',
+      to: {
+        name: message.nombre,
+        email: message.email
+      },
+      subject: 'Pagar por favor',
+      body: messageRes
+    }
+
+    execute(options)
+
+
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(messageRes), {
           correlationId: msg.properties.correlationId,
         });
 
         channel.ack(msg);
       } catch (error) {
-        console.error(`Hubo un error en el consumo del servidor de RabbitMQ ${error}`)
+        console.error(
+          `Hubo un error en el consumo del servidor de RabbitMQ ${error}`
+        );
       }
     });
   } catch (error) {

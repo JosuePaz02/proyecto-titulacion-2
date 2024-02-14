@@ -8,11 +8,7 @@ const rabbitMQRpcClient = async (link) => {
 
     const replyQueue = await channel.assertQueue("", { exclusive: true });
     const correlationId = uuid.v4();
-    const linkUuid = uuid.v4();
-
-    const linkPay = `http://localhost:3000/banregio/${linkUuid}`
-    link.pay = linkPay
-
+   
 
     //const mensaje = `Su link se ha procesado`
     console.log(correlationId);
