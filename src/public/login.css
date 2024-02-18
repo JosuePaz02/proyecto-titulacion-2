@@ -5,7 +5,7 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a;
+  background-color: #388cec;
 }
 
 .center-content {
@@ -27,7 +27,7 @@ body {
 button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #8e44ad;
+  background-color: #deeef1 ;
   color: #fff;
   text-decoration: none;
   border-radius: 15px;
@@ -40,7 +40,7 @@ button {
 }
 
 button:hover {
-  background-color: #6c3483;
+  background-color: #a0fae8 ;
 }
 
 .separator {
@@ -68,7 +68,7 @@ input {
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 25px; /* Añadido para hacer los cuadros de texto redondos */
-  border: 2px solid #8e44ad; /* Añadido un borde morado */
+  border: 2px solid #deeef1 ; /* Añadido un borde morado */
 }
 
 .login-header {
