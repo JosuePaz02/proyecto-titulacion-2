@@ -2,7 +2,7 @@ const amqp = require("amqplib");
 const { client, dbName } = require("../../database.js");
 const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
-const {execute} = require('../../sendEmail.js')
+const { execute } = require("../../sendEmail.js");
 
 const { sessionsMap } = require("../sessionsMap.js");
 
@@ -27,12 +27,11 @@ const rabbitMQRpcServer = async () => {
         const message = JSON.parse(jsonString);
 
         const linkUuid = uuid.v4();
-        const hasUuid = await bcrypt.hash(linkUuid, 10)
-        const cleanHash = hasUuid.replace(/\//g, '')
+        const hasUuid = await bcrypt.hash(linkUuid, 10);
+        const cleanHash = hasUuid.replace(/\//g, "");
 
-        const linkPay = `http://localhost:3000/banregio/${cleanHash}`
-        message.pay = linkPay
-    
+        const linkPay = `http://localhost:3000/banregio/${cleanHash}`;
+        message.pay = linkPay;
 
         //console.log(msg.properties);
         //console.log(buffer);
@@ -49,23 +48,36 @@ const rabbitMQRpcServer = async () => {
         //const userFound = await collection.findOne({ _id: idUser });
         await collection.updateOne(filtro, messageMongo);
 
-        const messageRes = `Su link ha sido procesado con nombre: ${message.nombre}, 
-    email: ${message.email}, telefono ${message.telefono}, monto: ${message.monto},
-    a ${message.mes} meses, con descripcion ${message.desc}, con fecha ${message.fecha_creacion} ,
-    y este es el link de pago: ${message.pay} `;
+        const messageRes = `<!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ejemplo de Correo HTML</title>
+    </head>
+    <body>
+      <div style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;">
+        <h1 style="color: #333;">¡Hola!</h1>
+        <p style="color: #555;">Buen día ${message.nombre} ha sido generado su link de pago.</p>
+          <li><strong>Link de pago:</strong> <b>${message.pay}</b></li>
+          <em>Monto:</em> <i>${message.monto} a ${message.mes} meses.</i>
+        <p>${message.desc}</p>
+      </div>
+    </body>
+    </html>
+    `;
 
-    const options = {
-      from: 'jpaz7913@gmail.com',
-      to: {
-        name: message.nombre,
-        email: message.email
-      },
-      subject: 'Pagar por favor',
-      body: messageRes
-    }
+        const options = {
+          from: "jpaz7913@gmail.com",
+          to: {
+            name: message.nombre,
+            email: message.email,
+          },
+          subject: "Pagar por favor",
+          body: messageRes,
+        };
 
-    execute(options)
-
+        execute(options);
 
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(messageRes), {
           correlationId: msg.properties.correlationId,

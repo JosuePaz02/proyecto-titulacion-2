@@ -18,7 +18,7 @@ const rabbitMQRpcClient = async (link) => {
       replyQueue.queue,
       function (msg) {
         if (msg.properties.correlationId === correlationId) {
-          console.log(` [.] Got ${msg.content.toString()}`);
+          console.log(` [.] Got Mensaje recibido`);
           setTimeout(() => {
             connection.close();
           }, 500);

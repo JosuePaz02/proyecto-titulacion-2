@@ -1,4 +1,5 @@
 const { client, dbName } = require("../database.js");
+const axios = require('axios')
 
 const pagoLink = async (req, res) => {
   const db = client.db(dbName);
@@ -30,4 +31,22 @@ const pagoLink = async (req, res) => {
   }
 };
 
-module.exports = { pagoLink };
+const pagoLinkPost = async (req, res) => {
+  const [BNRG_NUMERO_TARJETA, BNRG_FECHA_EXP, BNRG_CODIGO_SEGURIDAD] = req.body;
+  try {
+
+    const ruta = `https://testhub.banregio.com/adq?BNRG_CMD_TRANS=VENTA&BNRG_ID_AFILIACION=8090005&BNRG_ID_MEDIO=YYTN6gGG&BNRG_FOLIO=213432&BNRG_HORA_LOCAL=012420&BNRG_FECHA_LOCAL=01112023&BNRG_MODO_ENTRADA=MANUAL&BNRG_MODO_TRANS=AUT&BNRG_MONTO_TRANS=2000&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}` 
+
+
+    const result = await axios.post(ruta)
+    console.log(`Respuesta del server: ${result.data}`)
+
+    res.status(200).send(`Pago hecho correctamente.`)
+  } catch (error) {
+    console.error(`Error al realizar la peticion: ${error}`)
+    res.status(500).send('Error al pagar')
+    
+  }
+};
+
+module.exports = { pagoLink, pagoLinkPost };
