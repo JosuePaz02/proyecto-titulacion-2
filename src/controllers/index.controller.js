@@ -60,20 +60,30 @@ const loginGet = (req, res) => {
 
 const loginUsuario = async (req, res) => {
   const { email, password } = req.body;
-  if (!email) return res.status(400).json(["Favor ingresa el email"]);
-  if (!password)
-    return res.status(400).json(["Favor de ingresar la contraseña"]);
+  if (!email) {
+    req.flash('error_msg', 'Usuario no encontrado');
+    return res.redirect('/login'); 
+  }
+  if (!password) {
+    req.flash('error_msg', 'Contraseña incorrecta');
+    return res.redirect('/login');
+  }
   const db = client.db(dbName);
   const collection = db.collection("users");
 
   try {
     console.log(req.body);
     const userFound = await collection.findOne({ email: email });
-    if (!userFound) return res.status(400).json(["User not found"]);
+    if (!userFound) {
+      req.flash('error_msg', 'Credenciales incorrectas');
+      return res.redirect('/login');
+    }
 
     const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch) return res.status(400).json(["Incorrect password"]);
-
+    if (!isMatch) {
+      req.flash('error_msg', 'Credenciales incorrectas');
+      return res.redirect('/login');
+    }
     console.log(`Este es el id del usuario ${userFound._id}`);
 
     req.session.userId = userFound._id;

@@ -146,3 +146,9 @@ input[name="tel_number"] {
 #modal{
   max-width: 50ch;
 }
+.error-message {
+  color: red; /* Cambia el color del texto a rojo */
+  font-weight: bold; /* Hace el texto en negrita */
+  margin-top:  10px; /* Añade un margen superior para separarlo del contenido anterior */
+}
+

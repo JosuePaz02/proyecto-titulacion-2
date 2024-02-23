@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/login.css" />
-    
-  
     <title>Login</title>
   </head>
   <body>
@@ -14,49 +12,16 @@
       function onSubmit(token) {
             document.getElementById("user-form").submit();
       }
-
-      function validarCampos() {
-        // Obtener los valores de los campos
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-
-        // Reiniciar mensajes de validación
-        document.getElementById("email-error").innerHTML = "";
-        document.getElementById("password-error").innerHTML = "";
-
-        // Verificar si los campos están vacíos
-        var valido = true;
-        if (email.trim() === "") {
-          document.getElementById("email-error").innerHTML =
-            "Este campo es obligatorio.";
-          valido = false;
-        }
-
-        if (password.trim() === "") {
-          document.getElementById("password-error").innerHTML =
-            "Este campo es obligatorio.";
-          valido = false;
-        }
-
-        return valido; // Si todo está bien, permite enviar el formulario
-      }
-
-      function mostrarMensaje(mensaje, tipo) {
-        var messageBox = document.getElementById("message-box");
-        messageBox.innerHTML = mensaje;
-
-        if (tipo === "error") {
-          messageBox.style.backgroundColor = "#ffcccc";
-          messageBox.style.border = "1px solid #ff3333";
-          messageBox.style.color = "red";
-        } 
-        messageBox.style.display = "block";
-      }
     </script>
 
     <div class="center-container">
+     
+   
+    
       <h1 class="login-header">Login</h1>
+      
       <form action="/login" method="POST" id="user-form" class="center-content">
+        
         <div>
           <input
             type="email"
@@ -78,9 +43,11 @@
           />
           <span id="password-error" class="error-message"></span>
         </div>
-        <br />
-        <div id="message-box" class="message-box"></div>
-        <br />
+        <% if (error_msg) { %>
+          <div class="alert alert-danger error-message">
+            <%= error_msg %>
+          </div>
+        <% } %>
         <button
           type="button"
           class="g-recaptcha"
@@ -89,6 +56,7 @@
         >
           Ingresar
         </button>
+        
       </form>
 
       <br />
@@ -97,5 +65,8 @@
         <a href="forgot_password.ejs">Recordar Contraseña</a>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
-</html>
+  
+  </html>
