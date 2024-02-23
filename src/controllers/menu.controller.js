@@ -66,11 +66,15 @@ const vistanotificaciones = (req, res) => {
   res.render("notificaciones");
 };
 
+const registrouser = (req, res) => {
+  res.render("registro");
+};
+
 module.exports = {
   linksGet,
   vistalinks,
   vistanotificaciones,
-  generarLink,
+  generarLink,registrouser
 };
 
 //aqui voy a poner los scripts para la ventana modal
