@@ -1,15 +1,15 @@
 const { client, dbName } = require("../database.js");
-const axios = require('axios')
+const axios = require("axios");
 
 const pagoLink = async (req, res) => {
   const db = client.db(dbName);
-  const collection = db.collection("users");
+  const collection = db.collection("Links");
   const idUser = req.session.userId;
 
   try {
-    const user = await collection.findOne({ _id: idUser });
+    const user = await collection.findOne({ "link.idUser": idUser });
 
-    const userLink = user.pay;
+    const userLink = user.link.pay;
 
     const uuid = (userLink) => {
       //? Encontrar la posición del último '/'
@@ -32,20 +32,46 @@ const pagoLink = async (req, res) => {
 };
 
 const pagoLinkPost = async (req, res) => {
+  const db = client.db(dbName);
+  const collection = db.collection("Links");
   const [BNRG_NUMERO_TARJETA, BNRG_FECHA_EXP, BNRG_CODIGO_SEGURIDAD] = req.body;
+  const idUser = req.session.userId;
   try {
+    const user = await collection.findOne({ "link.idUser": idUser });
+    const fechaActual = new Date();
 
-    const ruta = `https://testhub.banregio.com/adq?BNRG_CMD_TRANS=VENTA&BNRG_ID_AFILIACION=8090005&BNRG_ID_MEDIO=YYTN6gGG&BNRG_FOLIO=213432&BNRG_HORA_LOCAL=012420&BNRG_FECHA_LOCAL=01112023&BNRG_MODO_ENTRADA=MANUAL&BNRG_MODO_TRANS=AUT&BNRG_MONTO_TRANS=2000&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}` 
+    // Opciones de formato para la hora
+    const opcionesHora = {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false, // Formato de 24 horas
+    };
 
+    // Opciones de formato para la fecha
+    const opcionesFecha = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    };
 
-    const result = await axios.post(ruta)
-    console.log(`Respuesta del server: ${result.data}`)
+    // Formatear la hora y la fecha
+    const horaFormateada = fechaActual
+      .toLocaleTimeString("es-MX", opcionesHora)
+      .replace(/:/g, ""); // Elimina los ':'
+    const fechaFormateada = fechaActual
+      .toLocaleDateString("es-MX", opcionesFecha)
+      .replace(/\//g, ""); // Elimina los '/
 
-    res.status(200).send(`Pago hecho correctamente.`)
+    const ruta = `https://testhub.banregio.com/adq?BNRG_CMD_TRANS=${user.tipo_trans}&BNRG_ID_AFILIACION=${user.id_afiliacion}&BNRG_ID_MEDIO=${user.id_medio}&BNRG_FOLIO=${user.folio}&BNRG_HORA_LOCAL=${horaFormateada}&BNRG_FECHA_LOCAL=${fechaFormateada}&BNRG_MODO_ENTRADA=${user.modo_entrada}&BNRG_MODO_TRANS=${user.modo_trans}&BNRG_MONTO_TRANS=${user.link.monto}&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}`;
+
+    const result = await axios.post(ruta);
+    console.log(`Respuesta del server: ${result.data}`);
+
+    res.status(200).send(`Pago hecho correctamente.`);
   } catch (error) {
-    console.error(`Error al realizar la peticion: ${error}`)
-    res.status(500).send('Error al pagar')
-    
+    console.error(`Error al realizar la peticion: ${error}`);
+    res.status(500).send("Error al pagar");
   }
 };
 
