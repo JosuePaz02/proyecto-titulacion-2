@@ -3,7 +3,7 @@ const { linksGet } = require("../controllers/menu.controller.js")
 const {
   vistalinks,
   vistanotificaciones,
-  generarLink
+  generarLink,registrouser
 } = require("../controllers/menu.controller.js")
 
 const router = express.Router()
@@ -15,6 +15,7 @@ router.get("/menu", linksGet)
 router.get("/links", vistalinks)
 router.post('/generarLink', generarLink)
 router.get("/notificaciones", vistanotificaciones)
+router.get("/registro",registrouser)
 
 
 //*Links para pagar

@@ -9,7 +9,7 @@ const { sessionsMap } = require("../sessionsMap.js");
 const rabbitMQRpcServer = async () => {
   try {
     const db = client.db(dbName);
-    const collection = db.collection("users");
+    const collection = db.collection("Links");
 
     const connection = await amqp.connect("amqp://localhost");
     const channel = await connection.createChannel();
@@ -31,22 +31,22 @@ const rabbitMQRpcServer = async () => {
         const cleanHash = hasUuid.replace(/\//g, "");
 
         const linkPay = `http://localhost:3000/banregio/${cleanHash}`;
-        message.pay = linkPay;
+        message.link.pay = linkPay;
 
         //console.log(msg.properties);
         //console.log(buffer);
         //console.log(jsonString);
         //console.log(message);
-        const messageMongo = { $set: { link: message } };
+        //const messageMongo = { $set: { link: message } };
 
-        const idUser = message.idUser;
+        const idUser = message.link.idUser;
         console.log(`Este es el id  ${idUser}`);
 
-        delete message.idUser;
+        /* delete message.idUser; */
 
-        const filtro = { _id: idUser };
+        //const filtro = { _id: idUser };
         //const userFound = await collection.findOne({ _id: idUser });
-        await collection.updateOne(filtro, messageMongo);
+        await collection.insertOne(message)
 
         const messageRes = `<!DOCTYPE html>
     <html lang="es">
@@ -58,10 +58,10 @@ const rabbitMQRpcServer = async () => {
     <body>
       <div style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;">
         <h1 style="color: #333;">¡Hola!</h1>
-        <p style="color: #555;">Buen día ${message.nombre} ha sido generado su link de pago.</p>
-          <li><strong>Link de pago:</strong> <b>${message.pay}</b></li>
-          <em>Monto:</em> <i>${message.monto} a ${message.mes} meses.</i>
-        <p>${message.desc}</p>
+        <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago.</p>
+          <li><strong>Link de pago:</strong> <b>${message.link.pay}</b></li>
+          <em>Monto:</em> <i>${message.link.monto} a ${message.link.mes} meses.</i>
+        <p>${message.link.desc}</p>
       </div>
     </body>
     </html>
@@ -70,8 +70,8 @@ const rabbitMQRpcServer = async () => {
         const options = {
           from: "jpaz7913@gmail.com",
           to: {
-            name: message.nombre,
-            email: message.email,
+            name: message.link.nombre,
+            email: message.link.email,
           },
           subject: "Pagar por favor",
           body: messageRes,
