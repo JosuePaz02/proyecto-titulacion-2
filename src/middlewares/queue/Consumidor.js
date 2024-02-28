@@ -58,7 +58,7 @@ const rabbitMQRpcServer = async () => {
     <body>
       <div style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;">
         <h1 style="color: #333;">¡Hola!</h1>
-        <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago.</p>
+        <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago con folio ${message.folio}.</p>
           <li><strong>Link de pago:</strong> <b>${message.link.pay}</b></li>
           <em>Monto:</em> <i>${message.link.monto} a ${message.link.mes} meses.</i>
         <p>${message.link.desc}</p>

@@ -2,7 +2,7 @@ const {
   obtenerDatosDeSesionConMovimientosYHorarios,
 } = require("../middlewares/sessionsMap.js");
 const { rabbitMQRpcClient } = require("../middlewares/queue/Productor.js");
-const uuid = require('uuid')
+const uuid = require("uuid");
 
 const linksGet = async (req, res) => {
   try {
@@ -41,30 +41,34 @@ const generarLink = (req, res) => {
     const { nombre, email, telefono, monto, meses, descripcionTextArea } =
       req.body;
     const idUser = req.session.userId;
-    const uuid1 = uuid.v4()
+    const uuid1 = uuid.v4();
 
-    const shortUUID = uuid1.substring(0, 4);
-  
+    const shortUUID = uuid1.substring(0, 6);
+
     //? Convertir los caracteres a valores numéricos
-    const folio = shortUUID.split('-').map(char => parseInt(char, 16)).join('');
+    const folio = shortUUID
+      .split("-")
+      .map((char) => parseInt(char, 16))
+      .join("");
 
-    const ahora = new Date()
+    const ahora = new Date();
 
     //? Se obtiene la fecha en formato AA/MM/DD
-    const fechaActual = ahora.toISOString().split('T')[0];
-    
-    //? Se obtiene la hora en formato HH/MM/SS
-    const horaActual = ahora.getHours() + ":" + ahora.getMinutes() + ":" + ahora.getSeconds();
+    const fechaActual = ahora.toISOString().split("T")[0];
 
-  
+    //? Se obtiene la hora en formato HH/MM/SS
+    const horaActual =
+      ahora.getHours() + ":" + ahora.getMinutes() + ":" + ahora.getSeconds();
+
+    req.session.folioLink = folio;
 
     const link1 = {
       folio: folio,
-      id_afiliacion: 8090005,
-      id_medio: 'YYTN6gGG',
-      modo_entrada: 'MANUAL',
-      modo_trans: 'AUT',
-      tipo_trans: 'VENTA',
+      id_afiliacion: "8090005",
+      id_medio: "YYTN6gGG",
+      modo_entrada: "MANUAL",
+      modo_trans: "AUT",
+      tipo_trans: "VENTA",
       link: {
         nombre: nombre,
         email: email,
@@ -75,7 +79,7 @@ const generarLink = (req, res) => {
         idUser: idUser,
       },
       fecha_creacion: fechaActual,
-      hora_creacion: horaActual
+      hora_creacion: horaActual,
     };
 
     console.log(link1);
