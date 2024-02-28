@@ -1,0 +1,154 @@
+body {
+   
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #388cec;
+  }
+  
+  .center-content {
+    text-align: center;
+    margin: 50px;
+    color: #fff;
+  }
+  
+  .center-content a {
+    color: #fff;
+    margin-right: 20px; /* Añadido un margen derecho solo para el enlace "Registrarse" */
+    float: right;
+  }
+  
+  .separator {
+    margin: 0;
+  }
+  
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #deeef1 ;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 16px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #a0fae8 ;
+  }
+  
+  .separator {
+    margin: 0 10px;
+  }
+  
+  .images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .left-image,
+  .right-image {
+    width: 200px;
+  }
+  
+  .right-image {
+    margin-left: auto;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 25px; /* Añadido para hacer los cuadros de texto redondos */
+    border: 2px solid #deeef1 ; /* Añadido un borde morado */
+  }
+  
+  .login-header {
+    font-size: 36px; /* Tamaño del texto más grande */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Estilo de letra bonito, puedes ajustar la lista según tus preferencias */
+    color: #000;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .tel-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px; 
+  }
+  
+  .custom-select {
+    width: 10%; 
+  }
+  
+  /* Agregamos un poco de margen izquierdo al input de teléfono para separarlo */
+  input[name="tel_number"] {
+    width: 46%; /* Ajustamos el ancho del input de teléfono */
+    margin-left: 4%; /* Agregamos un margen izquierdo para separar del select */
+  }
+  
+  
+  
+  .custom-select {
+    width: 50%;
+    
+    margin: 8px 0 8px 0; /* Agrega un margen a la derecha */
+    box-sizing: border-box;
+    border-radius: 25px;
+  
+    color: #000;
+    font-size: 16px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    flex-direction: left; 
+  }
+  
+  .options {
+    margin-top: 20px;
+    margin: 0;
+    text-align: left;
+    margin-left: 0;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .login-header1 {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  /* MODAL */
+  
+  #modal::backdrop{
+    background-color: rgba(0,0,0,.55);
+  }
+  
+  #modal{
+    max-width: 50ch;
+  }
+  .error-message {
+    color: red; /* Cambia el color del texto a rojo */
+    font-weight: bold; /* Hace el texto en negrita */
+    margin-top:  10px; /* Añade un margen superior para separarlo del contenido anterior */
+  }
+  
+  
