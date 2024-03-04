@@ -7,7 +7,7 @@ const createAcessToken = (playload) => {
             playload,
             TOKEN_SECRET,
             {
-                expiresIn: '3m'
+                expiresIn: '300s'
             },
             (err, token) => {
                 if(err) reject(err)
