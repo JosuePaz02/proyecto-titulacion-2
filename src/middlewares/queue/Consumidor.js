@@ -2,7 +2,7 @@ const amqp = require("amqplib");
 const { client, dbName } = require("../../database.js");
 const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
-const { execute } = require("../../sendEmail.js");
+const {emailLink} = require('../generacionEmail')
 
 const { sessionsMap } = require("../sessionsMap.js");
 
@@ -30,7 +30,7 @@ const rabbitMQRpcServer = async () => {
         const hasUuid = await bcrypt.hash(linkUuid, 10);
         const cleanHash = hasUuid.replace(/\//g, "");
 
-        const linkPay = `http://localhost:3000/banregio/${cleanHash}`;
+        const linkPay = `http://localhost:4000/banregio/${cleanHash}`;
         message.link.pay = linkPay;
 
         //console.log(msg.properties);
@@ -48,36 +48,10 @@ const rabbitMQRpcServer = async () => {
         //const userFound = await collection.findOne({ _id: idUser });
         await collection.insertOne(message)
 
-        const messageRes = `<!DOCTYPE html>
-    <html lang="es">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Ejemplo de Correo HTML</title>
-    </head>
-    <body>
-      <div style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;">
-        <h1 style="color: #333;">¡Hola!</h1>
-        <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago con folio ${message.folio}.</p>
-          <li><strong>Link de pago:</strong> <b>${message.link.pay}</b></li>
-          <em>Monto:</em> <i>${message.link.monto} a ${message.link.mes} meses.</i>
-        <p>${message.link.desc}</p>
-      </div>
-    </body>
-    </html>
-    `;
 
-        const options = {
-          from: "jpaz7913@gmail.com",
-          to: {
-            name: message.link.nombre,
-            email: message.link.email,
-          },
-          subject: "Pagar por favor",
-          body: messageRes,
-        };
+        emailLink(message)
 
-        execute(options);
+        const messageRes = 'El correo ha sido enviado'
 
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(messageRes), {
           correlationId: msg.properties.correlationId,
