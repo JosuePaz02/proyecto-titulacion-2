@@ -109,7 +109,7 @@ const pagoLinkPost = async (req, res) => {
     });
     console.log(`Respuesta del server: ${result.headers}`);
 
-    res.status(200).send(`Pago hecho correctamente. ${result.headers}`);
+    res.render("/src/views/pago.ejs");
   } catch (error) {
     console.error(`Error al realizar la peticion: ${error}`);
     res.status(500).send("Error al pagar");
