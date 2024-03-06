@@ -5194,7 +5194,7 @@ input[type="button"].btn-block {
   border-bottom-right-radius: 0.2857rem;
   border-bottom-left-radius: 0.2857rem;
 }
-
+/*aqui se cambia todo el fondo de graficas*/
 .card-body {
   flex: 1 1 auto;
   padding: 1.5rem;
@@ -16485,7 +16485,7 @@ select,
 textarea {
   font-family: "Poppins", sans-serif;
 }
-
+/*aqui tambien es lo de los titulos*/
 .card h1,
 .card h2,
 .card h3,
@@ -19992,21 +19992,26 @@ Copyright (c) 2015 Daniel Eden
   padding: 15px 15px 0;
   border: 0;
   color: rgba(255, 255, 255, 0.8);
+  background: red;
 }
 
 .card .card-header:not([data-background-color]) {
   background-color: #a4c1f5; /*aqui estaba en la primera interfaz*/
 }
 
+/*color de los titulos de las trajetas*/
 .card .card-header .card-title {
   color: #ffffff;
   font-weight: 100;
+  /*background-color: #000;*/
 }
-
+/*color de las tarjetas y de los titulos*/
 .card .card-header .card-category {
   color: white;
   margin-bottom: 5px;
   font-weight: 300;
+  /*background-color: #000;*/
+
 }
 
 .card .map {
@@ -20262,7 +20267,7 @@ Copyright (c) 2015 Daniel Eden
   margin-top: 30px;
   padding: 0 10px;
 }
-
+/*aqui se cambia lo que esta adentro de los cuadros de la primera interfaz*/
 .card-chart .chart-area {
   height: 220px;
   width: 100%;

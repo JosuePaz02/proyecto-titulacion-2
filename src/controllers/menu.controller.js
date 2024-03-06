@@ -107,33 +107,3 @@ module.exports = {
   generarLink,
   registrouser,
 };
-
-//aqui voy a poner los scripts para la ventana modal
-
-//const btnAbrirModal =  document.querySelector("#btn-abrir-modal")
-//const btnCerrarModal =  document.querySelector("#btn-cerrar-modal")
-//const modal =  document.querySelector("#modal")
-
-//btnAbrirModal.addEventListener("click",()=>{
-//modal.showModal();
-//})
-//btnCerrarModal.addEventListener("click",()=>{
-//modal.closest();
-//})
-
-//function openModal() {
-//document.getElementById('myModal').style.display = 'flex';
-//}
-
-// Función para cerrar la ventana modal
-//function closeModal() {
-//document.getElementById('myModal').style.display = 'none';
-//}
-
-// Cerrar la ventana modal haciendo clic fuera de ella
-//window.addEventListener('click', function(event) {
-//var modal = document.getElementById('myModal');
-//if (event.target === modal) {
-//modal.style.display = 'none';
-//}
-//});

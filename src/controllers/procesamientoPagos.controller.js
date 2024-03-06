@@ -1,6 +1,8 @@
 const { client, dbName } = require("../database.js");
 const axios = require("axios");
 const https = require("https");
+const {confirmacionEmail} = require('../middlewares/generacionEmail.js')
+
 
 const pagoLink = async (req, res) => {
   const db = client.db(dbName);
@@ -11,12 +13,6 @@ const pagoLink = async (req, res) => {
     const user = await collection.findOne({ folio: folioLink });
 
     const userLink = user.link.pay;
-
-    /* const agregarEnlace = (url) => {
-      let links = JSON.parse(localStorage.getItem("links")) || [];
-      links.push(url);
-      localStorage.setItem("links", JSON.stringify(links));
-    }; */
 
     const uuid = (userLink) => {
       //? Encontrar la posición del último '/'
@@ -74,32 +70,13 @@ const pagoLinkPost = async (req, res) => {
       .replace(/:/g, ""); // Elimina los ':'
     const fechaFormateada = fechaActual
       .toLocaleDateString("es-MX", opcionesFecha)
-      .replace(/\//g, ""); // Elimina los '/
-
-    //const ruta = `https://testhub.banregio.com/adq`;
+      .replace(/\//g, ""); // Elimina los '/'
 
     //const ruta = `https://colecto.banregio.com/adq`
 
     const ruta = `https://testhub.banregio.com/adq?BNRG_CMD_TRANS=${user.tipo_trans}&BNRG_ID_AFILIACION=${user.id_afiliacion}&BNRG_ID_MEDIO=${user.id_medio}&BNRG_FOLIO=${user.folio}&BNRG_HORA_LOCAL=${horaFormateada}&BNRG_FECHA_LOCAL=${fechaFormateada}&BNRG_MODO_ENTRADA=${user.modo_entrada}&BNRG_MODO_TRANS=${user.modo_trans}&BNRG_MONTO_TRANS=${user.link.monto}&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}`;
 
-    //const ruta = `https://colecto.banregio.com/adq?BNRG_CMD_TRANS=${user.tipo_trans}&BNRG_ID_AFILIACION=${user.id_afiliacion}&BNRG_ID_MEDIO=${user.id_medio}&BNRG_FOLIO=${user.folio}&BNRG_HORA_LOCAL=${horaFormateada}&BNRG_FECHA_LOCAL=${fechaFormateada}&BNRG_MODO_ENTRADA=${user.modo_entrada}&BNRG_MODO_TRANS=${user.modo_trans}&BNRG_MONTO_TRANS=${user.link.monto}&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}`;
-
     console.log(user.tipo_trans)
-
-    /* const data = {
-      BNRG_CMD_TRANS: 'VENTA',
-      BNRG_ID_AFILIACION: user.id_afiliacion,
-      BNRG_ID_MEDIO: user.id_medio,
-      BNRG_FOLIO: user.folio,
-      BNRG_HORA_LOCAL: horaFormateada,
-      BNRG_FECHA_LOCAL: fechaFormateada,
-      BNRG_MODO_ENTRADA: 'MANUAL',
-      BNRG_MODO_TRANS: 'AUT',
-      BNRG_MONTO_TRANS: user.link.monto,
-      BNRG_NUMERO_TARJETA: BNRG_NUMERO_TARJETA,
-      BNRG_FECHA_EXP: BNRG_FECHA_EXP,
-      BNRG_CODIGO_SEGURIDAD: BNRG_CODIGO_SEGURIDAD,
-    }; */
 
     const result = await axios.post(ruta, null, {
       //! Configuración adicional de Axios
@@ -107,7 +84,17 @@ const pagoLinkPost = async (req, res) => {
         rejectUnauthorized: false, //? Ignorar la verificación del certificado SSL
       }),
     });
+
+
+    
     console.log(`Respuesta del server: ${result.headers}`);
+    //console.log(result.headers.bnrg_codigo_proc)
+
+    if(result.headers.bnrg_codigo_proc == 'R'){
+      return res.status(500).send('Fallo en la transacción')
+    }
+
+    confirmacionEmail(result)
 
     res.render("/src/views/pago.ejs");
   } catch (error) {
