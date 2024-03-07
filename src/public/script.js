@@ -35,3 +35,6 @@ allLinks.forEach((elem) => {
     });
   });
 });
+
+document.getElementById("user-form").addEventListener("submit", function(event) {
+  event.preventDefault(); });
