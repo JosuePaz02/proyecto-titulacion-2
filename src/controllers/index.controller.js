@@ -117,9 +117,11 @@ const loginUsuario = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   registroUsuarios,
   loginUsuario,
   loginGet,
-  registroGet,
+  registroGet
 };
