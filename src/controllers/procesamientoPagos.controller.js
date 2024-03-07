@@ -28,7 +28,8 @@ const pagoLink = async (req, res) => {
       }
     };
 
-    res.render("procesamientoPago.ejs", { layout: false });
+    res.render("procesamientoPago", { layout: false, linkGenerado: req.session.linkGenerado });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -96,7 +97,8 @@ const pagoLinkPost = async (req, res) => {
 
     confirmacionEmail(result)
 
-    res.render("/src/views/pago.ejs");
+    res.render('pago', { layout: false });
+
   } catch (error) {
     console.error(`Error al realizar la peticion: ${error}`);
     res.status(500).send("Error al pagar");

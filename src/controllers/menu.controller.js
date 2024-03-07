@@ -81,6 +81,7 @@ const generarLink = (req, res) => {
       fecha_creacion: fechaActual,
       hora_creacion: horaActual,
     };
+    req.session.linkGenerado = link1;
 
     console.log(link1);
 
