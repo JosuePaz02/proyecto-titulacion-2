@@ -38,3 +38,6 @@ allLinks.forEach((elem) => {
 
 document.getElementById("user-form").addEventListener("submit", function(event) {
   event.preventDefault(); });
+
+  document.getElementById("link-form").addEventListener("submit", function(event) {
+    event.preventDefault(); });

@@ -38,7 +38,7 @@
 
                 <div class="form-container">
                   <h1 class="form-title">Generador de Link</h1>
-                  <form action="/api/generarLink" method="POST" required="true">
+                  <form action="/api/generarLink" method="POST" required="true" id="link-form">
                       <div class="input-container">
 
                         <input
@@ -121,18 +121,21 @@
 
                     <br />
 
-                    <textarea
-                      id="descripcion"
-                      name="descripcionTextArea"
-                      rows="2"
-                      cols="30"
-                      placeholder="Descripcion"
-                      required
-                    ></textarea>
+                    <div class="input-container">
+                      <input
+                        type="text"
+                        id="descripcion"
+                        name="descripcion"
+                        placeholder="Descripción"
+                        minlength="3"
+                        maxlength="33"
+                        required
+                      />
+                    </div>
                     <br />
 
                     <div class="input-container">
-                      <button id="generar" class="generar">Generador</button>
+                      <button id="generar" class="generar" type="submit">Generador</button>
                       
                     </div>
                   </form>
