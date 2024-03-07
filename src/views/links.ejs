@@ -2,7 +2,7 @@
 <div class="content">
   <div class="row">
     <div class="col-12">
-      <div class="card card-chart">
+      
         <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
           <div id="successMessage" class="alert custom-alert alert-dismissible fade show custom-alert" role="alert">
               <%= success_msg %>
@@ -12,7 +12,7 @@
           </div>
       <% } %>
       
-        <div class="card-header">
+        
           
           <html>
           <head>
@@ -25,14 +25,15 @@
           <body>
             <br />
             <br />
-          <div class="card-body">
-              <span class="texto-izquierda">Links creados</span>
-              <button id="abrirModal" class="boton-modal">Generar enlace</button>
-          </div>
+          
+            <div class="contenedor">
+              <button id="abrirModal2" class="boton-modal">Generar enlace</button>
+              <button id="abrirModal" class="boton-modal1">Generar enlace12</button>
+            </div>
            
       
             <!-- Ventana modal, por defecto no visiblel -->
-            <div id="ventanaModal" class="modal">
+            <div id="ventanaModal2" class="modal">
               <div class="contenido-modal">
                 <span class="cerrar">&times;</span>
 
@@ -147,36 +148,28 @@
           </body>
           </html>
         </div>
-      </div>
-      <div class="row">
-    <div class="col-lg-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category">Sub-total pagado</h5>
-          <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+      
+      <div class="contenedor2">
+        <div class="col-lg-3">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">Cantidad total pagada</h5>
+              <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+            </div>
+            
+          </div>
         </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <!--<canvas id="chartLinePurple"></canvas>-->
+        
+        <div class="col-lg-3">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category" >links total crreados</h5>
+              <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12</h3>
+            </div>
+            
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="col-lg-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category" >Sub-total Monto de links</h5>
-          <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12</h3>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <!--<canvas id="chartLineGreen"></canvas>-->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
     </div>
   </div>
 </div>

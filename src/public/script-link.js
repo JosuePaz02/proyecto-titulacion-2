@@ -74,7 +74,31 @@
                         modal.style.display = "none";
                       }
                     });
-                  
+      //nuevo ventana modal 2 para links masivos
+                    var modal = document.getElementById("ventanaModal2");
+
+                    // Botón que abre el modal
+                    var boton = document.getElementById("abrirModal2");
+
+                    // Hace referencia al elemento <span> que tiene la X que cierra la ventana
+                    var span = document.getElementsByClassName("cerrar")[0];
+
+                    // Cuando el usuario hace click en el botón, se abre la ventana
+                    boton.addEventListener("click", function () {
+                      modal.style.display = "block";
+                    });
+
+                    // Si el usuario hace click en la x, la ventana se cierra
+                    span.addEventListener("click", function () {
+                      modal.style.display = "none";
+                    });
+
+                    // Si el usuario hace click fuera de la ventana, se cierra.
+                    window.addEventListener("click", function (event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                      }
+                    });
     // Cuadro emergente de cuando el link se manda y desaparezca 
                     document.addEventListener('DOMContentLoaded', function() {
                       var successMessage = document.getElementById('successMessage');

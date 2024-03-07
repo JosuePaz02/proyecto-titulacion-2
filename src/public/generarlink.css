@@ -67,7 +67,23 @@ body {
 }
 
 .boton-modal {
-  position: absolute;
+  
+  top: 20px; /* distancia desde la parte superior */
+  /*right: 5%;  distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
+  background-color:  #96b3fc;
+  border: gray 2px solid;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.boton-modal1 {
+  
   top: 20px; /* distancia desde la parte superior */
   right: 5%; /* distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
   background-color:  #96b3fc;
@@ -84,6 +100,11 @@ body {
 }
 
 .boton-modal:hover {
+  color: white;
+  background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
+}
+
+.boton-modal1:hover {
   color: white;
   background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
 }
@@ -210,3 +231,20 @@ textarea:hover {
   }
 }
 
+.contenedor{
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+}
+.contenedor2{
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding-top: 20%;
+
+}
