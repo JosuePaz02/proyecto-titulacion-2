@@ -38,7 +38,7 @@ const vistalinks = (req, res) => {
 
 const generarLink = (req, res) => {
   try {
-    const { nombre, email, telefono, monto, meses, descripcionTextArea } =
+    const { nombre, email, telefono, monto, meses, descripcion } =
       req.body;
     const idUser = req.session.userId;
     const uuid1 = uuid.v4();
@@ -75,7 +75,7 @@ const generarLink = (req, res) => {
         telefono: telefono,
         monto: monto,
         mes: meses,
-        desc: descripcionTextArea,
+        desc: descripcion,
         idUser: idUser,
       },
       fecha_creacion: fechaActual,
