@@ -343,7 +343,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [80, 100, 70, 80, 120, 80],
+        data: [0, 0, 0, 0, 0, 0,0,0,0,0,0,0],
       }]
     };
 
@@ -379,7 +379,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [90, 27, 60, 12, 80,70,70,70,70],
+        data: [0, 0, 0, 0, 0,0,0,0,0,0,0,0],
       }]
     };
 
