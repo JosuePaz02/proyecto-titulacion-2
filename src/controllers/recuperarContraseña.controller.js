@@ -3,11 +3,11 @@ const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
 const { emailContraseña } = require("../middlewares/generacionEmail.js");
 
-const recuperarContraseñaGet = () => {
+const recuperarContraseniaGet = (req, res) => {
   res.render("forgot_password.ejs", { layout: false });
 };
 
-const recuperarContraseñaPost = async (req, res) => {
+const recuperarContraseniaPost = async (req, res) => {
   const { email } = req.body;
   const db = client.db(dbName);
   const collection = db.collection("users");
@@ -31,28 +31,33 @@ const recuperarContraseñaPost = async (req, res) => {
   }
 };
 
-const restablecerContraseñaGet = () => {
-    const uuid = req.session.resCon;
-    res.render('pagina de restablecer')
-}
+const restablecerContraseniaGet = (req, res) => {
+  const uuid = req.session.resCon;
+  res.render('restablecer_password.ejs', { layout: false })
+};
 
-const restablecerContraseñaPost = async () => {
+const restablecerContraseniaPost = async () => {
   const { password } = req.body;
   const db = client.db(dbName);
   const collection = db.collection("users");
   try {
     const uuid = req.session.resCon;
     const user = req.session.emailCon;
-    const userEmail = user.email
+    const userEmail = user.email;
 
-    const filtro = ({email: userEmail})
+    const filtro = { email: userEmail };
 
-    await collection.updateOne(filtro, {$set: {password: password}})
-    res.status(200).send('se cambio la contraseña')
+    await collection.updateOne(filtro, { $set: { password: password } });
+    res.status(200).send("se cambio la contraseña");
   } catch (error) {
-    console.error(error)
-    res.status(500).send('Error al cambiar la contraseña')
+    console.error(error);
+    res.status(500).send("Error al cambiar la contraseña");
   }
 };
 
-module.exports = { recuperarContraseñaGet, recuperarContraseñaPost, restablecerContraseñaGet, restablecerContraseñaPost };
+module.exports = {
+  recuperarContraseniaGet,
+  recuperarContraseniaPost,
+  restablecerContraseniaGet,
+  restablecerContraseniaPost,
+}
