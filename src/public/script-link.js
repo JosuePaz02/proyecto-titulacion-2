@@ -141,7 +141,7 @@
                   function validateForm() {
                     const file = fileInput.files[0];
                     if (!file) {
-                      errorArchivo.textContent='*Cargue un archivooooooooo';
+                      errorArchivo.textContent='*Cargue un archivo';
                       errorArchivo.style.color="red";
                       return false;
                     }else{
