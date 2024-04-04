@@ -75,28 +75,28 @@
                       }
                     });
       //nuevo ventana modal 2 para links masivos
-                    var modal = document.getElementById("ventanaModal2");
+                    var modal2 = document.getElementById("ventanaModal2");
 
                     // Botón que abre el modal
-                    var boton = document.getElementById("abrirModal2");
+                    var boton2 = document.getElementById("abrirModal2");
 
                     // Hace referencia al elemento <span> que tiene la X que cierra la ventana
-                    var span = document.getElementsByClassName("cerrar")[0];
+                    var span2 = document.getElementsByClassName("cerrar1")[0];
 
                     // Cuando el usuario hace click en el botón, se abre la ventana
-                    boton.addEventListener("click", function () {
-                      modal.style.display = "block";
+                    boton2.addEventListener("click", function () {
+                      modal2.style.display = "block";
                     });
 
                     // Si el usuario hace click en la x, la ventana se cierra
-                    span.addEventListener("click", function () {
-                      modal.style.display = "none";
+                    span2.addEventListener("click", function () {
+                      modal2.style.display = "none";
                     });
 
                     // Si el usuario hace click fuera de la ventana, se cierra.
                     window.addEventListener("click", function (event) {
-                      if (event.target == modal) {
-                        modal.style.display = "none";
+                      if (event.target == modal2) {
+                        modal2.style.display = "none";
                       }
                     });
     // Cuadro emergente de cuando el link se manda y desaparezca 
@@ -119,3 +119,35 @@
                           });
                       }
                   });
+
+                  /*Cargar archivo en excel*/
+                  const fileInput = document.getElementById('fileInput');
+                  const previewImage = document.getElementById('previewImage');
+                  const errorArchivo = document.getElementById('alertaa')
+                  fileInput.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                      previewImage.style.display = 'block';
+                      const reader = new FileReader();
+                      reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                      };
+                      reader.readAsDataURL(file);
+                    } else {
+                      previewImage.style.display = 'none';
+                    }
+                  });
+              
+                  function validateForm() {
+                    const file = fileInput.files[0];
+                    if (!file) {
+                      errorArchivo.textContent='*Cargue un archivooooooooo';
+                      errorArchivo.style.color="red";
+                      return false;
+                    }else{
+                      errorArchivo.textContent='';
+              
+                      return true;
+              
+                    }
+                  }

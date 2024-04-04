@@ -21,4 +21,21 @@ router.get("/registro",registrouser)
 //*Links para pagar
 router.get('/banregio/:uuid')
 
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'ramsEvidence/'); // Carpeta donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname); // Nombre del archivo en el servidor
+    }
+  });
+const upload = multer({ storage: storage });
+
+router.post('/upload', upload.single('file'), (req, res) => {
+    res.redirect('/');
+  });
+
 module.exports = router
