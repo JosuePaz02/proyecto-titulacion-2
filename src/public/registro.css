@@ -27,7 +27,7 @@ body {
   button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #deeef1 ;
+    background-color: #388cec;
     color: #fff;
     text-decoration: none;
     border-radius: 15px;
@@ -39,9 +39,6 @@ body {
     margin-top: 20px;
   }
   
-  button:hover {
-    background-color: #a0fae8 ;
-  }
   
   .separator {
     margin: 0 10px;
