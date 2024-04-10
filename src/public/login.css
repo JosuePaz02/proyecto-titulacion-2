@@ -5,12 +5,14 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #388cec;
+  background-color: #181e40; /* Fondo azul marino */
+    color: #FFFFFF; /* Texto blanco */
+    font-family: Arial, sans-serif; /* Fuente predeterminada */
 }
 
 .center-content {
   text-align: center;
-  margin: 50px;
+  margin: 80px;
   color: #fff;
 }
 
@@ -24,23 +26,27 @@ body {
   margin: 0;
 }
 
+
+
 button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #deeef1 ;
-  color: #fff;
+  background-color: #2458bf ;
+  color: #f8f7f8;
   text-decoration: none;
   border-radius: 15px;
   transition: background-color 0.3s ease-in-out;
-  font-size: 16px;
+  font-size: 120%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: none;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 30px;
+  width: 220px; /* Ancho del botón */
+  margin-left: 20px; /* Espacio en blanco a la izquierda del botón */
 }
 
 button:hover {
-  background-color: #a0fae8 ;
+  background-color: #0a1764 ;
 }
 
 .separator {
@@ -64,10 +70,10 @@ button:hover {
 
 input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
+  padding: 15px;
+  margin: 8px ;
   box-sizing: border-box;
-  border-radius: 25px; /* Añadido para hacer los cuadros de texto redondos */
+  border-radius: 40px; /* Añadido para hacer los cuadros de texto redondos */
   border: 2px solid #deeef1 ; /* Añadido un borde morado */
 }
 
@@ -151,4 +157,122 @@ input[name="tel_number"] {
   font-weight: bold; /* Hace el texto en negrita */
   margin-top:  10px; /* Añade un margen superior para separarlo del contenido anterior */
 }
+
+.center-container {
+  position: absolute;
+  right: 13%; /* Distancia desde el borde derecho */
+  margin-left: auto; /* Ajusta la distancia desde el borde izquierdo */
+  margin-right: 5%; /* Espacio entre el contenedor y el borde derecho */
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco con transparencia */
+ padding: 20px; /* Añadir relleno para separar el contenido del borde */ 
+ border-radius: 20px; /* Hacer el contenedor redondo */
+ height: 500px; /* Altura aumentada del contenedor */
+}
+
+.welcome-message {
+  position: fixed;
+  left: 30%; /* Distancia desde el borde izquierdo */
+  top: 35%; /* Distancia desde el borde superior */
+  color: #FFFFFF; /* Texto blanco */
+  font-family: 'Playfair Display', serif; /* Usando Playfair Display como la fuente principal */
+  font-size: 500%; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea */
+  transition: opacity 1s ease; /* Transición de opacidad */
+}
+
+.welcome-message p {
+  margin: 0; /* Eliminar margen interno del párrafo */
+}
+
+.welcome-message {
+ 
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.welcome-message1 {
+  position: fixed;
+  left: 30%; /* Distancia desde el borde izquierdo */
+  top: 43%; /* Distancia desde el borde superior */
+  color: #FFFFFF; /* Texto blanco */
+  font-family: 'Playfair Display', serif; /* Usando Playfair Display como la fuente principal */
+  font-size: 500%; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea */
+  transition: opacity 1s ease; /* Transición de opacidad */
+}
+
+.welcome-message1 p {
+  margin: 0; /* Eliminar margen interno del párrafo */
+}
+
+.welcome-message1 {
+ 
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.welcome-message2 {
+  position: fixed;
+  left: 30%; /* Distancia desde el borde izquierdo */
+  top: 51%; /* Distancia desde el borde superior */
+  color: #FFFFFF; /* Texto blanco */
+  font-family: 'Playfair Display', serif; /* Usando Playfair Display como la fuente principal */
+  font-size: 500%; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea */
+  transition: opacity 1s ease; /* Transición de opacidad */
+}
+
+.welcome-message2 p {
+  margin: 0; /* Eliminar margen interno del párrafo */
+}
+
+.welcome-message2 {
+ 
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.recordarContraseña a {
+  color: rgb(255, 255, 255); /* Color por defecto del enlace */
+  text-decoration: none; /* Quitar subrayado */
+  transition: color 0.3s ease; /* Transición suave de color */
+  text-align: center;
+  margin-top: 10%; /* Ajustar la posición vertical */
+}
+
+.recordarContraseña a:hover {
+  color: #0a1764; /* Cambiar a azul cuando se pasa el ratón */
+}
+
+
 

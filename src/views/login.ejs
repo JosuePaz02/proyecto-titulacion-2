@@ -4,25 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/login.css" />
-    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Inicio de sesión</title>
   </head>
   <body>
+    <div id="welcome-message" class="welcome-message">
+      <p>Bienvenido</p>
+    </div>
+    <div id="welcome-message1" class="welcome-message1">
+      <p> a </p>
+    </div>
+    <div id="welcome-message2" class="welcome-message2">
+      <p> Power Link</p>
+    </div>
+
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
       function onSubmit(token) {
-            document.getElementById("user-form").submit();
+        document.getElementById("user-form").submit();
       }
     </script>
 
     <div class="center-container">
-     
-   
-    
-      <h1 class="login-header">Login</h1>
-      
+      <h1 class="login-header">Inicio de sesión</h1>
+
       <form action="/login" method="POST" id="user-form" class="center-content">
-        
         <div>
+          <% if (error_msg) { %>
+          <div class="alert alert-danger error-message"><%= error_msg %></div>
+          <% } %>
           <input
             type="email"
             id="email"
@@ -43,11 +53,7 @@
           />
           <span id="password-error" class="error-message"></span>
         </div>
-        <% if (error_msg) { %>
-          <div class="alert alert-danger error-message">
-            <%= error_msg %>
-          </div>
-        <% } %>
+
         <button
           type="submit"
           class="g-recaptcha"
@@ -56,17 +62,14 @@
         >
           Ingresar
         </button>
-        
+        <div class="recordarContraseña">
+          <a href="/recuperarcontrasenia">¿Olvidaste tu contraseña?</a>
+        </div>
       </form>
 
       <br />
-
-      <div class="center-content">
-        <a href="/recuperarcontrasenia">Recordar Contraseña</a>
-      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
-  
-  </html>
+</html>
