@@ -273,6 +273,24 @@ input[name="tel_number"] {
 .recordarContraseña a:hover {
   color: #0a1764; /* Cambiar a azul cuando se pasa el ratón */
 }
+.input-container {
+  position: relative;
+}
+
+.input-container input {
+  padding-left: 30px; /* Espacio para el ícono */
+  /* Otros estilos */
+}
+
+.input-container i {
+  position: absolute;
+  left: 7%; /* Distancia del ícono al borde izquierdo del contenedor */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; /* Tamaño del ícono */
+  color: #2458bf /* Color del ícono */
+}
+
 
 
 

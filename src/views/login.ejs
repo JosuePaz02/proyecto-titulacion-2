@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <title>Inicio de sesión</title>
   </head>
   <body>
@@ -33,24 +35,27 @@
           <% if (error_msg) { %>
           <div class="alert alert-danger error-message"><%= error_msg %></div>
           <% } %>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Escribe tu email"
-            required="true"
-          />
-          <span id="email-error" class="error-message"></span>
-        </div>
-        <br />
-        <div>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Escribe tu contraseña"
-            required="true"
-          />
+          <div class="input-container">
+            <i class="fas fa-user"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Escribe tu email"
+              required="true"
+            />
+          </div>
+          <br />
+          <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Escribe tu contraseña"
+              required="true"
+            />
+          </div>
           <span id="password-error" class="error-message"></span>
         </div>
 
