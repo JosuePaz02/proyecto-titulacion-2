@@ -13,14 +13,14 @@ body {
   width: 100%; /* Ancho completo */
   height: 100%; /* Algura completa */
   overflow: auto; /* Se activará el scroll si es necesario */
-  background-color: rgba(255,255,255,0.326); /* Color negro con opacidad del 50% */
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
 }
 
 /* Ventana o caja modal */
 .contenido-modal {
   position: relative; /* Relativo con respecto al contenedor -modal- */
-  background-color: #a4c1f5;
-  color: black;
+  background-color:#4b4a4a;
+  color: rgb(248, 245, 245);
   margin: auto; /* Centrada */
   padding: 20px;
   width: 30%;
@@ -83,7 +83,7 @@ body {
   
   top: 20px; /* distancia desde la parte superior */
   /*right: 5%;  distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
-  background-color:  #96b3fc;
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
   border: gray 2px solid;
   color: white;
   padding: 10px 20px;
@@ -99,7 +99,7 @@ body {
   
   top: 20px; /* distancia desde la parte superior */
   right: 5%; /* distancia desde el lado derecho, ajustado a un 5% del ancho del contenedor padre */
-  background-color:  #96b3fc;
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
   border: gray 2px solid;
   color: white;
   padding: 10px 20px;
@@ -114,12 +114,12 @@ body {
 
 .boton-modal:hover {
   color: white;
-  background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
+  background: linear-gradient(70deg, #acaeb0, #a6a9aa, #9d9e9f);
 }
 
 .boton-modal1:hover {
   color: white;
-  background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
+  background: linear-gradient(70deg, #acaeb0, #a6a9aa, #9d9e9f);
 }
 
 .card.card-chart {
@@ -127,7 +127,7 @@ body {
   /*el padding se modifica en cuanto se hace más grande la pantalla*/
   height: 220px;
   width: 100%;
-  background-color: #a4c1f5;
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
 }
 
 /* Estilos para el formulario dentro de la ventana modal */
@@ -141,7 +141,7 @@ body {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #fbfbfb;
 }
 
 .form-group {
@@ -178,14 +178,14 @@ textarea:focus,
 input[type="text"]:hover,
 input[type="email"]:hover,
 textarea:hover {
-  border-color: #0d174a; /* Cambia el color del borde al estar enfocado o al pasar el ratón */
+  border-color: #343536; /* Cambia el color del borde al estar enfocado o al pasar el ratón */
 }
 
 
 
 
 #generar {
-  background-color: #96b3fc;
+  background-color: #2458bf ;
   border: gray 2px solid;
   color: white;
   padding: 15px 30px;
@@ -201,12 +201,11 @@ textarea:hover {
 
 #generar:hover {
   color: white;
-  background: linear-gradient(70deg, #8fafdc, #84cce8, #8fafdc);
+  background-color: #0a1764 ;
 }
 
 .alert-success {
-  background-color: #007bff; /* Cambia el color de fondo a azul */
-  border-color: #007bff; /* Cambia el color del borde a azul */
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
   color: #fff; /* Cambia el color del texto a blanco */
 }
 
@@ -216,8 +215,8 @@ textarea:hover {
   right: 20px;
   z-index: 1000;
   width: 300px;
-  border: 1px solid #a4c1f5;
-  background-color: #a4c1f5;
+  border: 1px solid #343435;
+  background-color: rgba(255,255,255,0.2); /* Color negro con opacidad del 50% */
   color: #fff;
   border-radius: 5px;
   padding: 15px;
@@ -259,5 +258,11 @@ textarea:hover {
   display: flex;
   align-items: center;
   padding-top: 20%;
+  
 
+}
+
+.h1,h2.h4 {
+  color: #fff;
+  background-color: rgba(245, 243, 243, 0.2); /* Color negro con opacidad del 50% */
 }
