@@ -327,7 +327,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
 
     var data = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
       datasets: [{
         label: "Links creados:",
         fill: true,
@@ -343,7 +343,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [0, 0, 0, 0, 0, 0,0,0,0,0,0,0],
+        data: [10, 0, 0, 0, 0, 0,9,0,0,0,0,0],
       }]
     };
 
@@ -363,7 +363,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
     var data = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
       datasets: [{
         label: "Pago por mes:",
         fill: true,
@@ -379,7 +379,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [0, 0, 0, 0, 0,0,0,0,0,0,0,0],
+        data: [10, 0, 0, 0, 20,0,0,0,0,0,0,0],
       }]
     };
 
