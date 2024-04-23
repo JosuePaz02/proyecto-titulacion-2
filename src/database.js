@@ -1,6 +1,6 @@
 const {MongoClient} = require('mongodb')
 
-const url = "mongodb://127.0.0.1/juegos2";
+const url = "mongodb://payments:kidbudir@www.sateav.com:27017/payments";
 const dbName = 'payments'
 const client = new MongoClient(url)
 
