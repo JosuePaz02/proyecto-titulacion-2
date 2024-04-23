@@ -35,7 +35,7 @@
             <div id="ventanaModal2" class="modal">
               <div class="contenido-modal">
                 <span class="cerrar1">&times;</span>
-                <h1>Subir Archivo</h1>
+                <h1 style="color: white">Subir Archivo</h1>
                 <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
                   <input type="file" name="file" id="fileInput" accept=".xlsx">
                   <input type="submit" value="Subir Archivo" onclick="return validateForm()">
@@ -43,8 +43,8 @@
               
                 </form>
                 <div id="previewContainer">
-                  <h2>Previsualización:</h2>
-                  <h4>El archivo excel debera contener los siguinte datos como se muestra en la tabla para ser valido</h4>
+                  <h2 style="color: white">Previsualización:</h2>
+                  <h4 style="color: white">El archivo excel debera contener los siguinte datos como se muestra en la tabla para ser valido</h4>
                   <img id="previewImage" src="/public/ejemploexcel.jpeg" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 100%;">
                 </div>
               </div> 
