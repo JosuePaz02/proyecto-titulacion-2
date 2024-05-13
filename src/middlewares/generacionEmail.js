@@ -16,7 +16,7 @@ const emailLink = (message) => {
         <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago con folio ${message.folio}.</p>
           <li><strong>Link de pago:</strong> <b>${message.link.pay}</b></li>
           <em>Monto:</em> <i>${message.link.monto} a ${message.link.mes} meses.</i>
-        <p>${message.link.desc}</p>
+        <p>${message.link.descripcion}</p>
       </div>
     </body>
     </html>

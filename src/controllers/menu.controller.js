@@ -75,7 +75,7 @@ const generarLink = (req, res) => {
         telefono: telefono,
         monto: monto,
         mes: meses,
-        desc: descripcionTextArea,
+        descripcion: descripcionTextArea,
         idUser: idUser,
       },
       fecha_creacion: fechaActual,
