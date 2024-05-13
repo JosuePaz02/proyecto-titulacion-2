@@ -1,35 +1,24 @@
 const { client, dbName } = require("../database.js");
 const axios = require("axios");
 const https = require("https");
-const {confirmacionEmail} = require('../middlewares/generacionEmail.js')
-
+const { confirmacionEmail } = require("../middlewares/generacionEmail.js");
 
 const pagoLink = async (req, res) => {
   const db = client.db(dbName);
   const collection = db.collection("Links");
-  const folioLink = req.session.folioLink;
+  const folioLink = req.params.folio;
+  console.log(folioLink)
 
   try {
     const user = await collection.findOne({ folio: folioLink });
 
-    const userLink = user.link.pay;
+    if (!user) {
+      throw new Error(
+        "No se encontró el enlace asociado al folio proporcionado"
+      );
+    }
 
-    const uuid = (userLink) => {
-      //? Encontrar la posición del último '/'
-      const ultimoSlashIndex = userLink.lastIndexOf("/");
-      console.log(ultimoSlashIndex);
-      if (ultimoSlashIndex !== -1) {
-        //? Extraer el UUID que viene después del último '/'
-        const extraerUuid = userLink.substring(ultimoSlashIndex + 1);
-        return extraerUuid;
-      } else {
-        //* Si no se encuentra ningún '/', devolver null o lanzar un error según sea necesario
-        throw new Error("No se encontro el uuid solicitado");
-      }
-    };
-
-    res.render("procesamientoPago", { layout: false, linkGenerado: req.session.linkGenerado });
-
+    res.render("procesamientoPago", { layout: false, linkGenerado: user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -42,8 +31,8 @@ const pagoLinkPost = async (req, res) => {
     req.body;
   const folioLink = req.session.folioLink;
   try {
-    
-    if(BNRG_NUMERO_TARJETA.length < 15) return res.status(500).send('Minimo deben ser 16 digitos')
+    if (BNRG_NUMERO_TARJETA.length < 15)
+      return res.status(500).send("Minimo deben ser 16 digitos");
 
     const user = await collection.findOne({ folio: folioLink });
     console.log(folioLink);
@@ -77,7 +66,7 @@ const pagoLinkPost = async (req, res) => {
 
     const ruta = `https://testhub.banregio.com/adq?BNRG_CMD_TRANS=${user.tipo_trans}&BNRG_ID_AFILIACION=${user.id_afiliacion}&BNRG_ID_MEDIO=${user.id_medio}&BNRG_FOLIO=${user.folio}&BNRG_HORA_LOCAL=${horaFormateada}&BNRG_FECHA_LOCAL=${fechaFormateada}&BNRG_MODO_ENTRADA=${user.modo_entrada}&BNRG_MODO_TRANS=${user.modo_trans}&BNRG_MONTO_TRANS=${user.link.monto}&BNRG_NUMERO_TARJETA=${BNRG_NUMERO_TARJETA}&BNRG_FECHA_EXP=${BNRG_FECHA_EXP}&BNRG_CODIGO_SEGURIDAD=${BNRG_CODIGO_SEGURIDAD}`;
 
-    console.log(user.tipo_trans)
+    console.log(user.tipo_trans);
 
     const result = await axios.post(ruta, null, {
       //! Configuración adicional de Axios
@@ -86,19 +75,16 @@ const pagoLinkPost = async (req, res) => {
       }),
     });
 
-
-    
     console.log(`Respuesta del server: ${result.headers}`);
     //console.log(result.headers.bnrg_codigo_proc)
 
-    if(result.headers.bnrg_codigo_proc == 'R'){
-      return res.status(500).send('Fallo en la transacción')
+    if (result.headers.bnrg_codigo_proc == "R") {
+      return res.status(500).send("Fallo en la transacción");
     }
 
-    confirmacionEmail(result)
+    confirmacionEmail(result);
 
-    res.render('pago', { layout: false });
-
+    res.render("pago", { layout: false });
   } catch (error) {
     console.error(`Error al realizar la peticion: ${error}`);
     res.status(500).send("Error al pagar");

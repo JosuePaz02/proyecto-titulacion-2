@@ -4,7 +4,7 @@ const {pagoLink, pagoLinkPost} = require('../controllers/procesamientoPagos.cont
 const router = express.Router()
 
 //*Links para pagar
-router.get('/banregio/:uuid', pagoLink)
+router.get('/banregio/:folio', pagoLink)
 router.post('/enviado', pagoLinkPost)
 
 module.exports = router

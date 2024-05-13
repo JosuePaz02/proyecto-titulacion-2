@@ -26,11 +26,11 @@ const rabbitMQRpcServer = async () => {
         const jsonString = buffer.toString("utf8");
         const message = JSON.parse(jsonString);
 
-        const linkUuid = uuid.v4();
-        const hasUuid = await bcrypt.hash(linkUuid, 10);
-        const cleanHash = hasUuid.replace(/\//g, "");
+        
+        /* const hasUuid = await bcrypt.hash(linkUuid, 10);
+        const cleanHash = hasUuid.replace(/\//g, ""); */
 
-        const linkPay = `http://localhost:4000/banregio/${cleanHash}`;
+        const linkPay = `http://localhost:4000/banregio/${message.folio}`;
         message.link.pay = linkPay;
 
         //console.log(msg.properties);
