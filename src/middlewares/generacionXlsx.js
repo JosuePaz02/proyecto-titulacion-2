@@ -1,10 +1,10 @@
 const xlsx = require("xlsx-populate");
 const uuid = require("uuid");
 
-const generacionMasiva = async (file) => {
+const generacionMasiva = async (file, idUser) => {
   const workbook = await xlsx.fromFileAsync(file);
   const value = workbook.sheet(0).usedRange().value();
-  const idUser = req.session.userId;
+
   const uuid1 = uuid.v4();
 
   const shortUUID = uuid1.substring(0, 6);

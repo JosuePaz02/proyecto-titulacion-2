@@ -26,7 +26,7 @@ router.get("/banregio/:uuid");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "ramsEvidence/"); // Carpeta donde se guardarán los archivos
+    cb(null, "uploads/"); // Carpeta donde se guardarán los archivos
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname); // Nombre del archivo en el servidor
@@ -35,10 +35,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("file"), async (req, res) => {
+  const idUser = req.session.userId;
   const file = req.file.path;
-  const excel = await generacionMasiva(file);
+  console.log(file)
+  const excel = await generacionMasiva(file, idUser);
   rabbitMQRpcClient(excel);
-  res.redirect("/");
+  res.redirect("/api/links");
 });
 
 module.exports = router;

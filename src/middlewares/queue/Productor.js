@@ -2,37 +2,46 @@ const amqp = require("amqplib");
 const uuid = require("uuid");
 
 const rabbitMQRpcClient = async (link) => {
+  let connection;
+  let channel;
+  let replyQueue;
+
   try {
-    const connection = await amqp.connect("amqp://localhost");
-    const channel = await connection.createChannel();
+    connection = await amqp.connect("amqp://localhost");
+    channel = await connection.createChannel();
 
-    const replyQueue = await channel.assertQueue("", { exclusive: true });
+    replyQueue = await channel.assertQueue("", { exclusive: true });
     const correlationId = uuid.v4();
-   
-
-    //const mensaje = `Su link se ha procesado`
-    console.log(correlationId);
-    console.log(replyQueue.queue);
 
     await channel.consume(
       replyQueue.queue,
       function (msg) {
         if (msg.properties.correlationId === correlationId) {
           console.log(` [.] Got Mensaje recibido`);
-          setTimeout(() => {
-            connection.close();
-          }, 500);
+          connection.close();
         }
       },
       { noAck: true }
     );
 
-    channel.sendToQueue("rpc_queue", Buffer.from(JSON.stringify(link)), {
-      correlationId: correlationId,
-      replyTo: replyQueue.queue,
-    });
+    if (Array.isArray(link)) {
+      for (const elemento of link) {
+        const mensaje = JSON.stringify(elemento);
+        channel.sendToQueue("rpc_queue", Buffer.from(mensaje), {
+          correlationId: correlationId,
+          replyTo: replyQueue.queue,
+        });
+      }
+    } else {
+      const mensaje = JSON.stringify(link);
+      channel.sendToQueue("rpc_queue", Buffer.from(mensaje), {
+        correlationId: correlationId,
+        replyTo: replyQueue.queue,
+      });
+    }
   } catch (error) {
-    console.error(`Hubo en error en RabbitMQ ${error}`)
+    console.error(`Hubo un error en RabbitMQ ${error}`);
+    // Intentar reconectar y volver a ejecutar la lógica
   }
 };
 
