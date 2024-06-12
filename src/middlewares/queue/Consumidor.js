@@ -12,7 +12,7 @@ const rabbitMQRpcServer = async () => {
     const db = client.db(dbName);
     const collection = db.collection("Links");
 
-    const connection = await amqp.connect("amqp://localhost");
+    const connection = await amqp.connect("amqp://myuser:mypassword@localhost");
     const channel = await connection.createChannel();
 
     const queue = "rpc_queue";

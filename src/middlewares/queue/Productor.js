@@ -7,7 +7,7 @@ const rabbitMQRpcClient = async (link) => {
   let replyQueue;
 
   try {
-    connection = await amqp.connect("amqp://localhost");
+    connection = await amqp.connect("amqp://myuser:mypassword@localhost");
     channel = await connection.createChannel();
 
     replyQueue = await channel.assertQueue("", { exclusive: true });
