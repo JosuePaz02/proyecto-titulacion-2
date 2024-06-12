@@ -9,8 +9,8 @@ connecDb();
 rabbitMQRpcServer();
 
 const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/linkspago.com/fullchain.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/linkspago.com/privkey.pem"),
+  key: fs.readFileSync("/etc/letsencrypt/live/linkspago.com/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/linkspago.com/fullchain.pem"),
 };
 
 https.createServer(options, app).listen(PORT, () => {
