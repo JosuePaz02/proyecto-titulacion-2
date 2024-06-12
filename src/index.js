@@ -3,6 +3,7 @@ const { connecDb, createCollection } = require("./database.js");
 const { PORT, HOST_ENV } = require("./config.js");
 const { rabbitMQRpcServer } = require("./middlewares/queue/Consumidor.js");
 const https = require("https");
+const fs = require("fs");
 
 connecDb();
 rabbitMQRpcServer();
