@@ -1,10 +1,17 @@
 const app = require("./app.js");
-const {connecDb, createCollection} = require('./database.js')
-const { PORT} = require('./config.js')
-const {rabbitMQRpcServer} = require('./middlewares/queue/Consumidor.js')
+const { connecDb, createCollection } = require("./database.js");
+const { PORT, HOST_ENV } = require("./config.js");
+const { rabbitMQRpcServer } = require("./middlewares/queue/Consumidor.js");
+const https = require("https");
 
-connecDb()
-rabbitMQRpcServer()
+connecDb();
+rabbitMQRpcServer();
 
-app.listen(PORT);
-console.log(`Server on port ${PORT}`);
+const options = {
+  key: fs.readFileSync("/home/ubuntu/myserver.key"),
+  cert: fs.readFileSync("/home/ubuntu/myserver.crt"),
+};
+
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`Server running on https://${HOST_ENV}`);
+});
