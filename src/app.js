@@ -11,6 +11,16 @@ const {validateToken} = require('./middlewares/validateToken.js')
 const flash = require ("connect-flash")
 const app = express()
 
+const redirectHttpToHttps = (req, res, next) => {
+    if (req.protocol === 'http') {
+      res.redirect(301, `https://${req.headers.host}${req.url}`);
+    } else {
+      next();
+    }
+  };
+  
+  app.use(redirectHttpToHttps);
+
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: true}))

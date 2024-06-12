@@ -22,7 +22,7 @@ const recuperarContraseniaPost = async (req, res) => {
     req.session.resCon = cleanHash;
     req.session.emailCon = userFound;
 
-    const linkPassword = `http://${HOST_ENV}:${PORT}/restablecer/${cleanHash}`;
+    const linkPassword = `${HOST_ENV}:${PORT}/restablecer/${cleanHash}`;
 
     emailContraseña(userFound, linkPassword);
     res.status(201).send("Se ha enviado un correo");

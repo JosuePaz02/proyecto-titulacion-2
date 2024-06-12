@@ -12,7 +12,7 @@ router.get('/registro', registroGet)
 router.post('/registro', validateRegex, registroUsuarios)
 
 //*Login 
-router.get('/login', loginGet)
+router.get('/', loginGet)
 router.post('/login', loginUsuario)
 
 //*recuperar contraseña

@@ -30,7 +30,7 @@ const rabbitMQRpcServer = async () => {
         /* const hasUuid = await bcrypt.hash(linkUuid, 10);
         const cleanHash = hasUuid.replace(/\//g, ""); */
 
-        const linkPay = `http://${HOST_ENV}:${PORT}/pago/${message.folio}`;
+        const linkPay = `${HOST_ENV}:${PORT}/pago/${message.folio}`;
         message.link.pay = linkPay;
 
         //console.log(msg.properties);
