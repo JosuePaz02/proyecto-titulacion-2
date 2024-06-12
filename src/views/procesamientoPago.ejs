@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="/public/link.css" />
     <title>Formulario de Tarjeta de Crédito</title>
-    
-</head>
-<body>
-        <form action="/enviado" method="post">
-            <div class="container">
-                <h2>Bienvenido <%= linkGenerado.link.nombre %></h2>
-                <p>Monto a pagar: $<%= linkGenerado.link.monto %></p>
-                <p>Motivo: <%= linkGenerado.link.descripcion %></p>
-            </div>
+  </head>
+  <body>
+    <form action="/pagado/<%= folio %>" method="post">
+      <div class="container">
+        <h2>Bienvenido <%= linkGenerado.link.nombre %></h2>
+        <p>Monto a pagar: $<%= linkGenerado.link.monto %></p>
+        <p>Motivo: <%= linkGenerado.link.descripcion %></p>
+      </div>
 
+      <label for="cardNumber">Número de Tarjeta:</label>
+      <input
+        type="text"
+        id="BNRG_NUMERO_TARJETA"
+        name="BNRG_NUMERO_TARJETA"
+        required
+      />
 
-        <label for="cardNumber">Número de Tarjeta:</label>
-        <input type="text" id="BNRG_NUMERO_TARJETA" name="BNRG_NUMERO_TARJETA" required>
-        
-        <label for="cardHolderName">Nombre del Titular:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        
-        <label for="expiryDate">Fecha de Vencimiento:</label>
-        <input type="text" id="BNRG_FECHA_EXP" name="BNRG_FECHA_EXP" placeholder="MM/AA" required>
-        
-        <label for="cvv">CVV:</label>
-        <input type="text" id="BNRG_CODIGO_SEGURIDAD" name="BNRG_CODIGO_SEGURIDAD" placeholder="123"required>
-        
-        <input type="submit" value="Enviar">
+      <label for="cardHolderName">Nombre del Titular:</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <label for="expiryDate">Fecha de Vencimiento:</label>
+      <input
+        type="text"
+        id="BNRG_FECHA_EXP"
+        name="BNRG_FECHA_EXP"
+        placeholder="MM/AA"
+        required
+      />
+
+      <label for="cvv">CVV:</label>
+      <input
+        type="text"
+        id="BNRG_CODIGO_SEGURIDAD"
+        name="BNRG_CODIGO_SEGURIDAD"
+        placeholder="123"
+        required
+      />
+
+      <input type="submit" value="Enviar" />
     </form>
-</body>
+  </body>
 </html>

@@ -15,7 +15,7 @@ const emailLink = (message) => {
         <h1 style="color: #333;">¡Hola!</h1>
         <p style="color: #555;">Buen día ${message.link.nombre} ha sido generado su link de pago con folio ${message.folio}.</p>
           <li><strong>Link de pago:</strong> <b>${message.link.pay}</b></li>
-          <em>Monto:</em> <i>${message.link.monto} a ${message.link.mes} meses.</i>
+          <em>Monto:</em> <i>${message.link.monto}</i>
         <p>${message.link.descripcion}</p>
       </div>
     </body>
@@ -34,7 +34,7 @@ const emailLink = (message) => {
 
     execute(options);
   } catch (error) {
-    console.error(`No se puede enviar Email: ${error}`)
+    console.error(`No se puede enviar Email: ${error}`);
   }
 };
 
@@ -97,17 +97,17 @@ const emailContraseña = (userFound, linkPassword) => {
     </html>
     `;
 
-    const options = {
-      from: "jpaz7913@gmail.com",
-      to: {
-        name: userFound.first_name,
-        email: userFound.email,
-      },
-      subject: "Recuperacion Contraseña",
-      body: messageRes,
-    };
+  const options = {
+    from: "jpaz7913@gmail.com",
+    to: {
+      name: userFound.first_name,
+      email: userFound.email,
+    },
+    subject: "Recuperacion Contraseña",
+    body: messageRes,
+  };
 
-    execute(options);
-}
+  execute(options);
+};
 
 module.exports = { emailLink, confirmacionEmail, emailContraseña };

@@ -38,8 +38,7 @@ const vistalinks = (req, res) => {
 
 const generarLink = (req, res) => {
   try {
-    const { nombre, email, telefono, monto, meses, descripcionTextArea } =
-      req.body;
+    const { nombre, email, telefono, monto, meses, descripcion } = req.body;
     const idUser = req.session.userId;
     const uuid1 = uuid.v4();
 
@@ -75,9 +74,10 @@ const generarLink = (req, res) => {
         telefono: telefono,
         monto: monto,
         mes: meses,
-        descripcion: descripcionTextArea,
+        descripcion: descripcion,
         idUser: idUser,
       },
+      liquidado: 0,
       fecha_creacion: fechaActual,
       hora_creacion: horaActual,
     };
@@ -86,7 +86,7 @@ const generarLink = (req, res) => {
     console.log(link1);
 
     rabbitMQRpcClient(link1);
-    req.flash("success_msg", "Enlaces creado");
+    req.flash("success_msg", "Enlace creado");
     return res.redirect("/api/links");
   } catch (error) {
     res.status(500).json({ message: error.message });

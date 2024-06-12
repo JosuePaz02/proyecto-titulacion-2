@@ -2,6 +2,7 @@ const { client, dbName } = require("../database.js");
 const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
 const { emailContraseña } = require("../middlewares/generacionEmail.js");
+const { PORT, HOST_ENV } = require("../config.js");
 
 const recuperarContraseniaGet = (req, res) => {
   res.render("forgot_password.ejs", { layout: false });
@@ -21,7 +22,7 @@ const recuperarContraseniaPost = async (req, res) => {
     req.session.resCon = cleanHash;
     req.session.emailCon = userFound;
 
-    const linkPassword = `http://localhost:4000/restablecer/${cleanHash}`;
+    const linkPassword = `http://${HOST_ENV}:${PORT}/restablecer/${cleanHash}`;
 
     emailContraseña(userFound, linkPassword);
     res.status(201).send("Se ha enviado un correo");
@@ -33,7 +34,7 @@ const recuperarContraseniaPost = async (req, res) => {
 
 const restablecerContraseniaGet = (req, res) => {
   const uuid = req.session.resCon;
-  res.render('restablecer_password.ejs', { layout: false })
+  res.render("restablecer_password.ejs", { layout: false });
 };
 
 const restablecerContraseniaPost = async () => {
@@ -60,4 +61,4 @@ module.exports = {
   recuperarContraseniaPost,
   restablecerContraseniaGet,
   restablecerContraseniaPost,
-}
+};

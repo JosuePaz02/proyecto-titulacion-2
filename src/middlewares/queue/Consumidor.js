@@ -2,7 +2,8 @@ const amqp = require("amqplib");
 const { client, dbName } = require("../../database.js");
 const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
-const {emailLink} = require('../generacionEmail')
+const { emailLink } = require("../generacionEmail");
+const { HOST_ENV, PORT } = require("../../config.js");
 
 const { sessionsMap } = require("../sessionsMap.js");
 
@@ -26,11 +27,10 @@ const rabbitMQRpcServer = async () => {
         const jsonString = buffer.toString("utf8");
         const message = JSON.parse(jsonString);
 
-        
         /* const hasUuid = await bcrypt.hash(linkUuid, 10);
         const cleanHash = hasUuid.replace(/\//g, ""); */
 
-        const linkPay = `http://localhost:4000/banregio/${message.folio}`;
+        const linkPay = `http://${HOST_ENV}:${PORT}/pago/${message.folio}`;
         message.link.pay = linkPay;
 
         //console.log(msg.properties);
@@ -46,12 +46,11 @@ const rabbitMQRpcServer = async () => {
 
         //const filtro = { _id: idUser };
         //const userFound = await collection.findOne({ _id: idUser });
-        await collection.insertOne(message)
+        await collection.insertOne(message);
 
+        emailLink(message);
 
-        emailLink(message)
-
-        const messageRes = 'El correo ha sido enviado'
+        const messageRes = "El correo ha sido enviado";
 
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(messageRes), {
           correlationId: msg.properties.correlationId,

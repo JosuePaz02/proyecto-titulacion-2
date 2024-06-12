@@ -5,16 +5,6 @@ const generacionMasiva = async (file, idUser) => {
   const workbook = await xlsx.fromFileAsync(file);
   const value = workbook.sheet(0).usedRange().value();
 
-  const uuid1 = uuid.v4();
-
-  const shortUUID = uuid1.substring(0, 6);
-
-  //? Convertir los caracteres a valores numéricos
-  const folio = shortUUID
-    .split("-")
-    .map((char) => parseInt(char, 16))
-    .join("");
-
   const ahora = new Date();
 
   //? Se obtiene la fecha en formato AA/MM/DD
@@ -26,6 +16,16 @@ const generacionMasiva = async (file, idUser) => {
 
   // Recorremos cada fila de la matriz
   const objetosFilas = value.slice(1).map((fila) => {
+    const uuid1 = uuid.v4();
+
+    const shortUUID = uuid1.substring(0, 6);
+
+    //? Convertir los caracteres a valores numéricos
+    const folio = shortUUID
+      .split("-")
+      .map((char) => parseInt(char, 16))
+      .join("");
+
     const objetoFila = {
       folio: folio,
       id_afiliacion: "8090005",

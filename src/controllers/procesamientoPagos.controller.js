@@ -7,7 +7,7 @@ const pagoLink = async (req, res) => {
   const db = client.db(dbName);
   const collection = db.collection("Links");
   const folioLink = req.params.folio;
-  console.log(folioLink)
+  console.log(folioLink);
 
   try {
     const user = await collection.findOne({ folio: folioLink });
@@ -18,7 +18,7 @@ const pagoLink = async (req, res) => {
       );
     }
 
-    res.render("procesamientoPago", { layout: false, linkGenerado: user });
+    res.render("procesamientoPago", { layout: false, linkGenerado: user, folio: folioLink });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -29,7 +29,7 @@ const pagoLinkPost = async (req, res) => {
   const collection = db.collection("Links");
   const { BNRG_NUMERO_TARJETA, BNRG_FECHA_EXP, BNRG_CODIGO_SEGURIDAD } =
     req.body;
-  const folioLink = req.session.folioLink;
+  const folioLink = req.params.folio;
   try {
     if (BNRG_NUMERO_TARJETA.length < 15)
       return res.status(500).send("Minimo deben ser 16 digitos");

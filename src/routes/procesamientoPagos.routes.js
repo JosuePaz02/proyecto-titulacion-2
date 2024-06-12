@@ -5,7 +5,7 @@ const router = express.Router()
 
 //*Links para pagar
 router.get('/banregio/:folio', pagoLink)
-router.post('/enviado', pagoLinkPost)
+router.post('/pagado/:folio', pagoLinkPost)
 
 module.exports = router
 
