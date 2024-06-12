@@ -6,8 +6,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #181e40; /* Fondo azul marino */
-    color: #FFFFFF; /* Texto blanco */
-    font-family: Arial, sans-serif; /* Fuente predeterminada */
+  color: #FFFFFF; /* Texto blanco */
+  font-family: Arial, sans-serif; /* Fuente predeterminada */
 }
 
 .center-content {
@@ -25,8 +25,6 @@ body {
 .separator {
   margin: 0;
 }
-
-
 
 button {
   display: inline-block;
@@ -102,8 +100,6 @@ input[name="tel_number"] {
   margin-left: 4%; /* Agregamos un margen izquierdo para separar del select */
 }
 
-
-
 .custom-select {
   width: 50%;
   padding: 10px;
@@ -145,13 +141,14 @@ input[name="tel_number"] {
 
 /* MODAL */
 
-#modal::backdrop{
+#modal::backdrop {
   background-color: rgba(0,0,0,.55);
 }
 
-#modal{
+#modal {
   max-width: 50ch;
 }
+
 .error-message {
   color: red; /* Cambia el color del texto a rojo */
   font-weight: bold; /* Hace el texto en negrita */
@@ -164,9 +161,9 @@ input[name="tel_number"] {
   margin-left: auto; /* Ajusta la distancia desde el borde izquierdo */
   margin-right: 5%; /* Espacio entre el contenedor y el borde derecho */
   background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco con transparencia */
- padding: 20px; /* Añadir relleno para separar el contenido del borde */ 
- border-radius: 20px; /* Hacer el contenedor redondo */
- height: 500px; /* Altura aumentada del contenedor */
+  padding: 20px; /* Añadir relleno para separar el contenido del borde */ 
+  border-radius: 20px; /* Hacer el contenedor redondo */
+  height: 500px; /* Altura aumentada del contenedor */
 }
 
 .welcome-message {
@@ -185,7 +182,6 @@ input[name="tel_number"] {
 }
 
 .welcome-message {
- 
   transform: translate(-50%, -50%);
   opacity: 0;
   animation: fadeIn 2s ease forwards;
@@ -193,10 +189,10 @@ input[name="tel_number"] {
 
 @keyframes fadeIn {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -216,7 +212,6 @@ input[name="tel_number"] {
 }
 
 .welcome-message1 {
- 
   transform: translate(-50%, -50%);
   opacity: 0;
   animation: fadeIn 2s ease forwards;
@@ -224,10 +219,10 @@ input[name="tel_number"] {
 
 @keyframes fadeIn {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -247,7 +242,6 @@ input[name="tel_number"] {
 }
 
 .welcome-message2 {
- 
   transform: translate(-50%, -50%);
   opacity: 0;
   animation: fadeIn 2s ease forwards;
@@ -255,10 +249,10 @@ input[name="tel_number"] {
 
 @keyframes fadeIn {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -273,6 +267,7 @@ input[name="tel_number"] {
 .recordarContraseña a:hover {
   color: #0a1764; /* Cambiar a azul cuando se pasa el ratón */
 }
+
 .input-container {
   position: relative;
 }
@@ -291,6 +286,73 @@ input[name="tel_number"] {
   color: #2458bf /* Color del ícono */
 }
 
+/* Media Queries para Responsividad */
 
+/* Para tablets y dispositivos más pequeños */
+@media (max-width: 768px) {
+  .center-content {
+    margin: 40px;
+  }
+  button {
+    width: 180px; /* Ancho reducido del botón */
+    font-size: 100%;
+  }
+  .left-image,
+  .right-image {
+    width: 150px;
+  }
+  .login-header {
+    font-size: 28px;
+  }
+  .center-container {
+    width: 90%;
+    right: 5%;
+    height: auto;
+    padding: 10px;
+  }
+  .welcome-message,
+  .welcome-message1,
+  .welcome-message2 {
+    font-size: 300%;
+    left: 50%;
+    top: 20%;
+  }
+}
 
-
+/* Para móviles */
+@media (max-width: 480px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+  }
+  .center-content {
+    margin: 20px;
+  }
+  button {
+    width: 150px; /* Ancho reducido del botón */
+    font-size: 80%;
+  }
+  .left-image,
+  .right-image {
+    width: 100px;
+  }
+  .login-header {
+    font-size: 24px;
+  }
+  .center-container {
+    width: 100%;
+    right: 0;
+    height: auto;
+    padding: 10px;
+    margin: 0;
+  }
+  .welcome-message,
+  .welcome-message1,
+  .welcome-message2 {
+    font-size: 200%;
+    left: 50%;
+    top: 15%;
+  }
+}
